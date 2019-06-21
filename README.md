@@ -1,5 +1,7 @@
 # csc648-su19-Team05
 
+http://csc648s819-env.q3vppsg4m2.us-east-2.elasticbeanstalk.com/
+
 ## Please when ready add your teams application URL or IP to the repository description. This will help with grading. Teams are expected to keep this value up to date.
 
 ## Please do the following steps before completing Milestone 0.
