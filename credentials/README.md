@@ -13,6 +13,7 @@ Database Password:
 Database Name: 
 
 ## Instructions
+-- placeholder, add instructions here --
 
 ## The purpose of this folder is to store all credentials needed to log into your server and databases. This is important for many reasons. But the two most important reasons is
     1. Grading , servers and databases will be logged into to check code and functionality of application. Not changes will be unless directed and coordinated with the team.
