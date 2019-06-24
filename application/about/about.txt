@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sandeep Dhakal</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #191970;
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+    
+
+    
+    <body>
+        <div>
+            <a href="index.html"> To Homepage</a>
+            <h1 style="text-align:center;">About </h1>
+       
+           
+            <div>
+                <p> Sandeep Dhakal is the undergraduate student of SF State <br /> He lives in South San Francisco <br /> He likes traveling and netflix.</p>
+            </div>
+        </div>
+    </body>
+<html>
+ 
