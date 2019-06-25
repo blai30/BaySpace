@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Cyber Pro</title>
+
+  <!-- Custom fonts for this theme -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="css/freelancer.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">The Cyber Guy</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+
+      <!-- Masthead Avatar Image -->
+      <img class="masthead-avatar mb-5" src="data:image/jpeg;base64,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" alt="">
+
+      <!-- Masthead Heading -->
+      <h1 class="masthead-heading text-uppercase mb-0">Jonathan R. Kaldani</h1>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- Masthead Subheading -->
+      <p class="masthead-subheading font-weight-light mb-0">Information Security Professional</p>
+
+    </div>
+  </header>
+
+  <!-- Portfolio Section -->
+  <section class="page-section portfolio" id="portfolio">
+    <div class="container">
+
+      <!-- Portfolio Section Heading -->
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- Portfolio Grid Items -->
+      <div class="row">
+
+        
+        <!-- Portfolio Item 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="https://securityfirstcorp.com/wp-content/uploads/2018/07/shutterstock_609173918-800x450.jpg" alt="">
+          </div>
+        </div>
+
+        <!-- Portfolio Item 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="http://www.nasa.gov/sites/default/files/thumbnails/image/cybersecurity-colored.jpg" alt="">
+          </div>
+        </div>
+
+        <!-- Portfolio Item 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="https://i.ytimg.com/vi/WmvpSTVu9N4/maxresdefault.jpg" alt="">
+          </div>
+        </div>
+
+        
+
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container">
+
+      <!-- About Section Heading -->
+      <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- About Section Content -->
+      <div class="row">
+        <div class="col-lg-8 ml-auto">
+          <p class="lead">Information Security professional with experince in Vulnerability Managmeant, Penetration testing, User Training and Awareness, Digital Forensics, and Incident Response</p>
+        </div>
+        <div class="col-lg-4 mr-auto">
+          <p class="lead">Education recived at SFSU and CMU</p>
+        </div>
+      </div>
+
+      <!-- About Section Button -->
+      <div class="text-center mt-4">
+        <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
+          <i class="fas fa-download mr-2"></i>
+          Free Download!
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="page-section" id="contact">
+    <div class="container">
+
+      <!-- Contact Section Heading -->
+      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- Contact Section Form -->
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+          <form name="sentMessage" id="contactForm" novalidate="novalidate">
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Name</label>
+                <input class="form-control" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Email Address</label>
+                <input class="form-control" id="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Phone Number</label>
+                <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>Message</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <div class="row">
+
+        <!-- Footer Location -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h4 class="text-uppercase mb-4">Location</h4>
+          <p class="lead mb-0">San Francisco
+            
+        </div>
+
+        <!-- Footer Social Icons -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h4 class="text-uppercase mb-4">Around the Web</h4>
+          <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <i class="fab fa-fw fa-facebook-f"></i>
+          </a>
+          <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <i class="fab fa-fw fa-twitter"></i>
+          </a>
+          <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <i class="fab fa-fw fa-linkedin-in"></i>
+          </a>
+          <a class="btn btn-outline-light btn-social mx-1" href="#">
+            <i class="fab fa-fw fa-dribbble"></i>
+          </a>
+        </div>
+
+        <!-- Footer About Text -->
+        <div class="col-lg-4">
+          <h4 class="text-uppercase mb-4">About Freelancer</h4>
+          <p class="lead mb-0">Freelance is a free to use, MIT licensed Bootstrap theme created by
+            <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Copyright Section -->
+  <section class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>Copyright &copy; Your Website 2019</small>
+    </div>
+  </section>
+
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+
+  <!-- Portfolio Modals -->
+
+  <!-- Portfolio Modal 1 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/cabin.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 2 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-labelledby="portfolioModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tasty Cake</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/cake.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 3 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-labelledby="portfolioModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/circus.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 4 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-labelledby="portfolioModal4Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Controller</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/game.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 5 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-labelledby="portfolioModal5Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Locked Safe</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/safe.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Modal 6 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-labelledby="portfolioModal6Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Submarine</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="img/portfolio/submarine.png" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/freelancer.min.js"></script>
+
+</body>
+
+</html>
