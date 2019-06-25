@@ -1,50 +1,45 @@
 # Credentials Folder
 
-Server URL: ec2-13-57-181-150.us-west-1.compute.amazonaws.com
+**Server URL:** http://ec2-13-57-181-150.us-west-1.compute.amazonaws.com/
 
-SSH Username: ubuntu
+**SSH Username:** ubuntu
 
-SSH Password: (NO PASSWORD SET FOR NOW) Key can be found at credentials/csc648Summer.pem
+**SSH Password:** (NO PASSWORD SET FOR NOW) Key can be found at credentials/csc648Summer.pem
 
-Database Username: root
+**Database Username:** root
 
-Public ip: 13.57.24.137 on port 22
+**Public ip:** 13.57.24.137 on port 22
 
-Database Password: admin
+**Database Password:** admin
 
-Database Name: csc648summer /var/www/html/index.html
+**Database Name:** csc648summer /var/www/html/index.html
 
 ## Instructions
--- placeholder, add instructions here --
-If running from terminal
+### SSH from terminal
+1. first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location.
+2. Open terminal and type "chmod 400 /location of where you stored csc648Summer.pem
+3. Then type "ssh -i /location of csc648Summer.pem unbutu@ec2-13-57-181-150.us-west-1.compute.amazonaws.com" and you're in!
 
-first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location. 
-Open terminal and type "chmod 400 /location of where you stored csc648Summer.pem
-Then type "ssh -i /location of csc648Summer.pem unbutu@ec2-13-57-181-150.us-west-1.compute.amazonaws.com"
-and your in!
-
-using filezilla
-
-first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location. 
-open filezilla
-go to settings. On mac click on filezilla->settings
-click on SFTP from the selections on left
-click add key file and upload the csc648Summer.pem
-click ok to finalize settings
-at the top in the host box type "http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
-username is "ubuntu"
-password is left empty 
-port: 22
-click quick connect 
-and your in!
-traverse to var/www/html/index.html to view webpage
+### Using FileZilla (SFTP)
+1. first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location. 
+2. open filezilla
+3. go to settings. On mac click on filezilla->settings
+4. click on SFTP from the selections on left
+5. click add key file and upload the csc648Summer.pem
+6. click ok to finalize settings
+7. at the top in the host box type "http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
+8. username is "ubuntu"
+9. password is left empty 
+10. port: 22
+11. click quick connect and you're in!
+12. traverse to var/www/html/index.html to view webpage
 
 ## The purpose of this folder is to store all credentials needed to log into your server and databases. This is important for many reasons. But the two most important reasons is
     1. Grading , servers and databases will be logged into to check code and functionality of application. Not changes will be unless directed and coordinated with the team.
     2. Help. If a class TA or class CTO needs to help a team with an issue, this folder will help facilitate this giving the TA or CTO all needed info AND instructions for logging into your team's server. 
 
 
-# Blow is a list of items required. Missing items will causes points to be deducted from multiple milestone submissions.
+# Below is a list of items required. Missing items will causes points to be deducted from multiple milestone submissions.
 
 1. Server URL or IP
 2. SSH username
