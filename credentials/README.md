@@ -34,6 +34,18 @@
 11. click quick connect and you're in!
 12. traverse to var/www/html/index.html to view webpage
 
+### Connecting to Database using MySQL Workbench
+1. Open MySQL Workbench and add a new connection
+2. Set connection name "to CSC 648 AWS" (this can be anything)
+3. Change connection method to "Standard TCP/IP over SSH"
+4. Change SSH Hostname to "13.57.181.150:22"
+5. Change SSH Username to "ubuntu"
+6. Set the SSH Key File path to the "csc648Summer.pem" file located in the credentials directory
+7. Leave MySQL Hostname as "127.0.0.1"
+8. Leave MySQL Server Port as "3306"
+9. Leave Username as "root"
+10. Connect to the Database using "admin" as the password
+
 ## The purpose of this folder is to store all credentials needed to log into your server and databases. This is important for many reasons. But the two most important reasons is
     1. Grading , servers and databases will be logged into to check code and functionality of application. Not changes will be unless directed and coordinated with the team.
     2. Help. If a class TA or class CTO needs to help a team with an issue, this folder will help facilitate this giving the TA or CTO all needed info AND instructions for logging into your team's server. 
