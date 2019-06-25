@@ -18,7 +18,7 @@ If running from terminal
 
 first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location. 
 Open terminal and type "chmod 400 /location of where you stored csc648Summer.pem
-Then type "ssh -i /location of csc648Summer.pem unbutu@http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
+Then type "ssh -i /location of csc648Summer.pem unbutu@ec2-13-57-181-150.us-west-1.compute.amazonaws.com"
 and your in!
 
 using filezilla
