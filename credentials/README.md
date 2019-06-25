@@ -6,7 +6,9 @@ SSH Username: ubuntu
 
 SSH Password: (NO PASSWORD SET FOR NOW) Key can be found at credentials/csc648Summer.pem
 
-Database Username: Public ip: 13.57.24.137 on port 22
+Database Username: root
+
+Public ip: 13.57.24.137 on port 22
 
 Database Password: admin
 
