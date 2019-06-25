@@ -1,0 +1,13 @@
+root { 
+    display: block;
+}
+
+.centered {
+	text-align: center;
+}
+
+.sansSerif{
+    font-family: sans-serif;
+}
+
+
