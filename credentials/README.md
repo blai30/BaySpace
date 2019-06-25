@@ -28,7 +28,7 @@
 5. click add key file and upload the csc648Summer.pem
 6. click ok to finalize settings
 7. at the top in the host box type "http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
-8. username is "ubuntu"
+8. username is `ubuntu`
 9. password is left empty 
 10. port: 22
 11. click quick connect and you're in!
@@ -36,14 +36,14 @@
 
 ### Connecting to Database using MySQL Workbench
 1. Open MySQL Workbench and add a new connection
-2. Set connection name "to CSC 648 AWS" (this can be anything)
-3. Change connection method to "Standard TCP/IP over SSH"
-4. Change SSH Hostname to "13.57.181.150:22"
-5. Change SSH Username to "ubuntu"
-6. Set the SSH Key File path to the "csc648Summer.pem" file located in the credentials directory
-7. Leave MySQL Hostname as "127.0.0.1"
-8. Leave MySQL Server Port as "3306"
-9. Leave Username as "root"
+2. Set connection name to `CSC 648 AWS` (this can be anything)
+3. Change connection method to `Standard TCP/IP over SSH`
+4. Change SSH Hostname to `13.57.181.150:22`
+5. Change SSH Username to `ubuntu`. There is no password
+6. Set the SSH Key File path to the `csc648Summer.pem` file located in the credentials directory
+7. Leave MySQL Hostname as `127.0.0.1`
+8. Leave MySQL Server Port as `3306`
+9. Leave Username as `root`
 10. Connect to the Database using "admin" as the password
 
 ### Connecting to Database from Command-Line
