@@ -15,7 +15,7 @@
 **Database Name:** csc648summer /var/www/html/index.html
 
 ## Instructions
-### SSH from terminal
+### SSH from Terminal
 1. first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location.
 2. Open terminal and type "chmod 400 /location of where you stored csc648Summer.pem
 3. Then type "ssh -i /location of csc648Summer.pem unbutu@ec2-13-57-181-150.us-west-1.compute.amazonaws.com" and you're in!
@@ -45,6 +45,10 @@
 8. Leave MySQL Server Port as "3306"
 9. Leave Username as "root"
 10. Connect to the Database using "admin" as the password
+
+### Connecting to Database from Command-Line
+1. Enter `mysql -u root -p`
+2. Enter `admin` as the password
 
 ## The purpose of this folder is to store all credentials needed to log into your server and databases. This is important for many reasons. But the two most important reasons is
     1. Grading , servers and databases will be logged into to check code and functionality of application. Not changes will be unless directed and coordinated with the team.
