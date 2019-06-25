@@ -8,7 +8,7 @@ SSH Password: (NO PASSWORD SET FOR NOW) Key can be found at credentials/csc648Su
 
 Database Username: Public ip: 13.57.24.137 on port 22
 
-Database Password: (NONE SET FOR NOW)
+Database Password: admin
 
 Database Name: csc648summer /var/www/html/index.html
 
