@@ -44,7 +44,7 @@
 7. Leave MySQL Hostname as `127.0.0.1`
 8. Leave MySQL Server Port as `3306`
 9. Leave Username as `root`
-10. Connect to the Database using "admin" as the password
+10. Connect to the Database using `admin` as the password
 
 ### Connecting to Database from Command-Line
 1. Enter `mysql -u root -p`
