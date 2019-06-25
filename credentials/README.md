@@ -1,7 +1,6 @@
 # Credentials Folder
 
-Server URL: http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com
-
+Server URL: ec2-13-57-181-150.us-west-1.compute.amazonaws.com
 SSH Username: ubuntu
 
 SSH Password: (NO PASSWORD SET FOR NOW) Key can be found at credentials/csc648Summer.pem
