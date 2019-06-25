@@ -1,19 +1,41 @@
 # Credentials Folder
 
-Server URL: http://csc648s819-env.q3vppsg4m2.us-east-2.elasticbeanstalk.com/
+Server URL: http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com
 
-SSH Username: 
+SSH Username: ubuntu
 
-SSH Password: 
+SSH Password: (NO PASSWORD SET FOR NOW) Key can be found at credentials/csc648Summer.pem
 
-Database Username: 
+Database Username: Public ip: 13.57.24.137 on port 22
 
-Database Password: 
+Database Password: (NONE SET FOR NOW)
 
-Database Name: 
+Database Name: csc648summer /var/www/html/index.html
 
 ## Instructions
 -- placeholder, add instructions here --
+If running from terminal
+
+first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location. 
+Open terminal and type "chmod 400 /location of where you stored csc648Summer.pem
+Then type "ssh -i /location of csc648Summer.pem unbutu@http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
+and your in!
+
+using filezilla
+
+first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location. 
+open filezilla
+go to settings. On mac click on filezilla->settings
+click on SFTP from the selections on left
+click add key file and upload the csc648Summer.pem
+click ok to finalize settings
+at the top in the host box type "http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
+username is "ubuntu"
+password is left empty 
+port: 22
+click quick connect 
+and your in!
+traverse to var/www/html/index.html to view webpage
 
 ## The purpose of this folder is to store all credentials needed to log into your server and databases. This is important for many reasons. But the two most important reasons is
     1. Grading , servers and databases will be logged into to check code and functionality of application. Not changes will be unless directed and coordinated with the team.
