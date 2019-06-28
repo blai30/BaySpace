@@ -1,6 +1,8 @@
 # csc648-su19-Team05
 
-http://csc648s819-env.q3vppsg4m2.us-east-2.elasticbeanstalk.com/
+http://ec2-13-57-181-150.us-west-1.compute.amazonaws.com/
+
+http://13.57.181.150/
 
 ## Please when ready add your teams application URL or IP to the repository description. This will help with grading. Teams are expected to keep this value up to date.
 
