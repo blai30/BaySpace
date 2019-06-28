@@ -6,7 +6,6 @@ const router = express.Router();
 
 const path = __dirname + '/app/';
 
-const hostname = '127.0.0.1';
 const port = 3000;
 
 app.use('/', router);
@@ -56,17 +55,5 @@ router.get('/about/Tianchen', function(req, res) {
 });
 
 app.listen(port, function() {
-    console.log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running on Port: ${port}/`);
 });
-
-// // Create server and handle incoming requests
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.end('Hello World\n');
-// });
-
-// // Listen for incoming requests
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
