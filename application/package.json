@@ -1,14 +1,20 @@
 {
   "name": "application",
   "version": "1.0.0",
-  "description": "",
+  "description": "CSC 648 Team 5 App",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+
+  ],
+  "author": "CSC 648 Team 5",
+  "license": "MIT",
   "dependencies": {
     "express": "latest"
+  },
+  "devDependencies": {
+
   }
 }
