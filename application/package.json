@@ -4,7 +4,7 @@
   "description": "CSC 648 Team 5 App",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./bin/www"
   },
   "keywords": [
 
@@ -12,7 +12,9 @@
   "author": "CSC 648 Team 5",
   "license": "MIT",
   "dependencies": {
-    "express": "latest"
+    "express": "latest",
+    "http-errors": "latest",
+    "debug": "latest"
   },
   "devDependencies": {
 
