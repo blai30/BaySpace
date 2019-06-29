@@ -10,6 +10,7 @@
   "author": "CSC 648 Team 5",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "debug": "latest",
     "express": "latest",
     "http-errors": "latest",
