@@ -12,27 +12,27 @@
 
 **Database Password:** admin
 
-**Database Name:** csc648summer /var/www/html/index.html
+**Database Name:** sys
 
 ## Instructions
 ### SSH from Terminal
-1. first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location.
-2. Open terminal and type "chmod 400 /location of where you stored csc648Summer.pem
-3. Then type "ssh -i /location of csc648Summer.pem unbutu@ec2-13-57-181-150.us-west-1.compute.amazonaws.com" and you're in!
+1. First download the `csc648Summer.pem` key loacated in `csc648-su19-Team05/credentials` and place it in an accessiable location.
+2. Open terminal and type `chmod 400 /location of csc648Summer.pem`
+3. Then type `ssh -i /location of csc648Summer.pem ubuntu@ec2-13-57-181-150.us-west-1.compute.amazonaws.com` and you're in!
 
 ### Using FileZilla (SFTP)
-1. first download the csc648Summer.pem key loacated in csc648-su19-Team05/credentials and place it in an accessiable location. 
-2. open filezilla
-3. go to settings. On mac click on filezilla->settings
-4. click on SFTP from the selections on left
-5. click add key file and upload the csc648Summer.pem
-6. click ok to finalize settings
-7. at the top in the host box type "http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
-8. username is `ubuntu`
-9. password is left empty 
-10. port: 22
-11. click quick connect and you're in!
-12. traverse to var/www/html/index.html to view webpage
+1. First download the `csc648Summer.pem` key loacated in `csc648-su19-Team05/credentials` and place it in an accessiable location. 
+2. Open FileZilla
+3. Go to settings. On Mac click FileZilla->Settings. On Windows click Edit->Settings.
+4. Click on SFTP from the selections on left
+5. Click add key file and upload the `csc648Summer.pem`
+6. Click ok to finalize settings
+7. At the top in the host box type "http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
+8. Username is `ubuntu`
+9. Password is left empty 
+10. Port: 22
+11. Click quick connect and you're in!
+12. Traverse to `/home/ubuntu/application/public` to view webpage
 
 ### Connecting to Database using MySQL Workbench
 1. Open MySQL Workbench and add a new connection
