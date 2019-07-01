@@ -4,6 +4,8 @@
 
 **SSH Username:** ubuntu
 
+**SSH Hostname:** `ec2-54-215-173-150.us-west-1.compute.amazonaws.com`
+
 **SSH Password:** (NO PASSWORD SET FOR NOW) Key can be found at credentials/csc648Summer.pem
 
 **Database Username:** root
