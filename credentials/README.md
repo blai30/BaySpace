@@ -1,6 +1,6 @@
 # Credentials Folder
 
-**Server URL:** http://ec2-13-57-181-150.us-west-1.compute.amazonaws.com/
+**Server URL:** http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/
 
 **SSH Username:** ubuntu
 
@@ -8,7 +8,7 @@
 
 **Database Username:** root
 
-**Public ip:** 13.57.24.137 on port 22
+**Public ip:** 54.215.173.150 on port 22
 
 **Database Password:** admin
 
@@ -18,7 +18,7 @@
 ### SSH from Terminal
 1. First download the `csc648Summer.pem` key loacated in `csc648-su19-Team05/credentials` and place it in an accessiable location.
 2. Open terminal and type `chmod 400 /location of csc648Summer.pem`
-3. Then type `ssh -i /location of csc648Summer.pem ubuntu@ec2-13-57-181-150.us-west-1.compute.amazonaws.com` and you're in!
+3. Then type `ssh -i /location of csc648Summer.pem ubuntu@ec2-54-215-173-150.us-west-1.compute.amazonaws.com` and you're in!
 
 ### Using FileZilla (SFTP)
 1. First download the `csc648Summer.pem` key loacated in `csc648-su19-Team05/credentials` and place it in an accessiable location. 
@@ -27,7 +27,7 @@
 4. Click on SFTP from the selections on left
 5. Click add key file and upload the `csc648Summer.pem`
 6. Click ok to finalize settings
-7. At the top in the host box type "http://ec2-13-57-24-137.us-west-1.compute.amazonaws.com"
+7. At the top in the host box type "http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/"
 8. Username is `ubuntu`
 9. Password is left empty 
 10. Port: 22
@@ -38,7 +38,7 @@
 1. Open MySQL Workbench and add a new connection
 2. Set connection name to `CSC 648 AWS` (this can be anything)
 3. Change connection method to `Standard TCP/IP over SSH`
-4. Change SSH Hostname to `13.57.181.150:22`
+4. Change SSH Hostname to `54.215.173.150:22`
 5. Change SSH Username to `ubuntu`. There is no password
 6. Set the SSH Key File path to the `csc648Summer.pem` file located in the credentials directory
 7. Leave MySQL Hostname as `127.0.0.1`
