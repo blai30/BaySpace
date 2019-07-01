@@ -1,8 +1,8 @@
 # csc648-su19-Team05
 
-http://ec2-13-57-181-150.us-west-1.compute.amazonaws.com/
+http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/
 
-http://13.57.181.150/
+http://54.215.173.150/
 
 ## Please when ready add your teams application URL or IP to the repository description. This will help with grading. Teams are expected to keep this value up to date.
 
