@@ -2,14 +2,20 @@
 ## Installing NodeJS dependencies
 Dependencies are listed in package.json. Before working on this application, PLEASE open up your terminal at this directory (`application/`) and run `npm install`. This command will add a `node_modules` directory and install all dependencies in it. You must have NodeJS installed on your machine to run the command.
 
+### controllers/
+Controllers is part of the MVC architecture and is in charge of responding to the user based on the user's requests. When the user interacts with the view, a request is generated which shall then be handled by the controller.
+
+### models/
+Models is part of the MVC architecture and is in charge of maintaining the data in the application. Only models shall access the database.
+
 ### public/
 This folder is for static files served publically to the user. Frontend.
 
-### views/
-This folder is for .pug files. Pug is the NodeJS view engine.
-
 ### routes/
 This folder is for routing web pages to the web app. Should be .js files.
+
+### views/
+This folder is for .pug files. Pug is the NodeJS view engine. Views is part of the MVC architecture and is in charge of rendering components for the user interface. Views utilizes the data from models and presents data in the form that the users want. Users are allowed to make changes to the data. Consists of both static and dynamic pages.
 
 ### app.js
 This is the main NodeJS file. Handles views, express, errors.
