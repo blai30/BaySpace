@@ -15,7 +15,7 @@ This folder is for static files served publically to the user. Frontend.
 This folder is for routing web pages to the web app. Should be .js files.
 
 ### views/
-This folder is for .pug files. Pug is the NodeJS view engine. Views is part of the MVC architecture and is in charge of rendering components for the user interface. Views utilizes the data from models and presents data in the form that the users want. Users are allowed to make changes to the data. Consists of both static and dynamic pages.
+This folder is for .hbs files. Handlebars (hbs) is the NodeJS view engine. Views is part of the MVC architecture and is in charge of rendering components for the user interface. Views utilizes the data from models and presents data in the form that the users want. Users are allowed to make changes to the data. Consists of both static and dynamic pages.
 
 ### app.js
 This is the main NodeJS file. Handles views, express, errors.
