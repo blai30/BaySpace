@@ -14,7 +14,7 @@
 
 **Database Password:** admin
 
-**Database Name:** sys
+**Database Name:** team5app
 
 ## Instructions
 ### SSH from Terminal
