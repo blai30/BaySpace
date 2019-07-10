@@ -1,0 +1,31 @@
+<h1>Welcome to database search</h1>
+
+<form>
+    <input id="search" type="text" name="search" value="{{searchTerm}}" placeholder="Search...">
+<!--    <select name="category" onchange="this.form.submit()">-->
+<!--        <option value="">All Categories</option>-->
+<!--        <option value="Name">by Name</option>-->
+<!--        <option value="Location">by Location</option>-->
+<!--        <option value="Status">by Status</option>-->
+<!--    </select>-->
+</form>
+
+<table>
+    <thead>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Status</th>
+    <th>Date Opened</th>
+    </thead>
+
+    <tbody>
+    {{#each results}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.status}}</td>
+            <td>{{this.opened}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

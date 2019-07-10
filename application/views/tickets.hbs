@@ -1,0 +1,27 @@
+<h1>Viewing all tickets</h1>
+
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Status</th>
+        <th>Date Opened</th>
+    </thead>
+
+    <tbody>
+        {{#each tickets}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.location}}</td>
+                <td>{{this.status}}</td>
+                <td>{{this.opened}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<form action="/tickets" method="POST">
+    <input id="name" type="text" name="name" placeholder="Name">
+    <input id="location" type="text" name="location" placeholder="Location">
+    <button id="addticket" name="addticket">Add Ticket</button>
+</form>

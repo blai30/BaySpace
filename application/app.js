@@ -2,14 +2,25 @@ const express = require("express");
 const createError = require('http-errors');
 const path = require('path');
 
+// Routers
+const indexRouter = require('./routes/index');
+const searchRouter = require('./routes/search');
+const ticketsRouter = require('./routes/tickets');
+
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.use(express.urlencoded({ extended: false }));
 
 // Serve files statically
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Connect routes
+app.use('/', indexRouter);
+app.use('/search', searchRouter);
+app.use('/tickets', ticketsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
