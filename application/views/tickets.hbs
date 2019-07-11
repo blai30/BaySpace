@@ -2,7 +2,7 @@
 
 <table>
     <thead>
-        <th>Name</th>
+        <th>Issue</th>
         <th>Location</th>
         <th>Status</th>
         <th>Date Opened</th>
@@ -11,7 +11,7 @@
     <tbody>
         {{#each tickets}}
             <tr>
-                <td>{{this.name}}</td>
+                <td>{{this.issue}}</td>
                 <td>{{this.location}}</td>
                 <td>{{this.status}}</td>
                 <td>{{this.opened}}</td>
@@ -21,7 +21,7 @@
 </table>
 
 <form action="/tickets" method="POST">
-    <input id="name" type="text" name="name" placeholder="Name">
+    <input id="issue" type="text" name="issue" placeholder="Issue">
     <input id="location" type="text" name="location" placeholder="Location">
     <button id="addticket" name="addticket">Add Ticket</button>
 </form>

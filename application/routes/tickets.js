@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res) => {
   // Creating a new ticket with user entered name and location
   let newTicket = {
-    name: req.body.name,
+    issue: req.body.issue,
     location: req.body.location
   };
   let sqlQuery = 'INSERT INTO tickets SET ?';
@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
 
       data: req.body,
       errors: {
-        name: {
+        issue: {
           msg: 'What is the issue?'
         },
         location: {
