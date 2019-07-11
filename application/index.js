@@ -11,8 +11,8 @@ const http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
-const port = normalizePort(process.env.PORT || '3000');
+// USE PORT 80 WHEN RUNNING ON SERVER. MAKE SURE THE PORT IS 80 WHEN UPLOADING THIS FILE TO SERVER
+const port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 /**
