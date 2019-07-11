@@ -8,7 +8,7 @@ function search(req, res, next) {
 
   let sqlQuery = 'SELECT * FROM tickets';
   if (searchTerm !== '') {
-    sqlQuery = `SELECT * FROM tickets WHERE Name LIKE '%` + searchTerm + `%'`;
+    sqlQuery = `SELECT * FROM tickets WHERE issue LIKE '%` + searchTerm + `%'`;
   }
 
   // Display search results
