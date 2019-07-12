@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Route is '/tickets'
 router.get('/', (req, res, next) => {
-  let sqlQuery = 'SELECT * FROM tickets';
+  let sqlQuery = 'SELECT * FROM ticket';
   database.query(sqlQuery, (err, results, fields) => {
     if (err) {
       throw err;
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
     issue: req.body.issue,
     location: req.body.location
   };
-  let sqlQuery = 'INSERT INTO tickets SET ?';
+  let sqlQuery = 'INSERT INTO ticket SET ?';
   database.query(sqlQuery, newTicket, (err, result) => {
     if (err) {
       throw err;
@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
   });
 
   // Display updated tickets table
-  let sqlQuery2 = 'SELECT * FROM tickets';
+  let sqlQuery2 = 'SELECT * FROM ticket';
   database.query(sqlQuery2, (err, results, fields) => {
     if (err) {
       throw err;

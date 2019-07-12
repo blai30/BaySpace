@@ -6,9 +6,9 @@ const router = express.Router();
 function search(req, res, next) {
   const searchTerm = req.query.search;
 
-  let sqlQuery = 'SELECT * FROM tickets';
+  let sqlQuery = 'SELECT * FROM ticket';
   if (searchTerm !== '') {
-    sqlQuery = `SELECT * FROM tickets WHERE issue LIKE '%` + searchTerm + `%'`;
+    sqlQuery = `SELECT * FROM ticket WHERE issue LIKE '%` + searchTerm + `%'`;
   }
 
   // Display search results
