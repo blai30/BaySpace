@@ -16,9 +16,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: false }));
 
-// Serve files statically, bootstrap directory
+// Serve files statically, bootstrap and jquery directory
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap')));
+app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery')));
 
 // Connect routes
 app.use('/', indexRouter);
