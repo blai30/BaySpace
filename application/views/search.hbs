@@ -2,12 +2,14 @@
 
 <form>
   <input id="search" type="text" name="search" value="{{searchTerm}}" placeholder="Search...">
-  <!--    <select name="category" onchange="this.form.submit()">-->
-  <!--        <option value="">All Categories</option>-->
-  <!--        <option value="Issue">by Issue</option>-->
-  <!--        <option value="Location">by Location</option>-->
-  <!--        <option value="Status">by Status</option>-->
-  <!--    </select>-->
+  <select name="category" onchange="this.form.submit()">
+    <option value="">All Categories</option>
+    <option value="Issue">by Issue</option>
+    <option value="Location">by Location</option>
+    <option value="Status">by Status</option>
+    <option value="Description">by Description</option>
+    <option value="Rating">by Rating</option>
+  </select>
 </form>
 
 <table class="table">
