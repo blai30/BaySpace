@@ -4,6 +4,8 @@ const path = require('path');
 
 // Routers
 const indexRouter = require('./routes/index');
+const aboutRouter = require('./routes/about');
+const signinRouter = require('./routes/signin');
 const searchRouter = require('./routes/search');
 const ticketsRouter = require('./routes/tickets');
 
@@ -14,11 +16,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: false }));
 
-// Serve files statically
+// Serve files statically, bootstrap directory
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap')));
 
 // Connect routes
 app.use('/', indexRouter);
+app.use('/about', aboutRouter);
+app.use('/signin', signinRouter);
 app.use('/search', searchRouter);
 app.use('/tickets', ticketsRouter);
 

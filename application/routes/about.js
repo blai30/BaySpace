@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-// Routes index.hbs page to / or /index (main page)
+// Routes about.hbs page to /about
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'CSC 648 Team 05' });
+  res.render('about', { title: 'About Team 05' });
 });
 
 module.exports = router;

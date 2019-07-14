@@ -1,8 +1,14 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*
+CUSTOM CSS GOES IN THIS FILE
+
+KEEP IN MIND THAT ANY CSS WRITTEN IN THIS FILE
+WILL OVERRIDE CSS FROM BOOTSTRAP
+*/
+
+* {
+  /* ADVISED TO NOT USE THIS TAG FOR ANY CSS AT ALL */
 }
 
-a {
-  color: #00B7FF;
+body {
+
 }

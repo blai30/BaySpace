@@ -1,27 +1,35 @@
 <h1>Viewing all tickets</h1>
 
-<table>
-    <thead>
-        <th>Issue</th>
-        <th>Location</th>
-        <th>Status</th>
-        <th>Time</th>
-    </thead>
+<table class="table">
+  <thead>
+    <th scope="col">Issue</th>
+    <th scope="col">Location</th>
+    <th scope="col">Status</th>
+    <th scope="col">Description</th>
+    <th scope="col">Rating</th>
+    <th scope="col">Time</th>
+    <th scope="col">User</th>
+  </thead>
 
-    <tbody>
-        {{#each tickets}}
-            <tr>
-                <td>{{this.issue}}</td>
-                <td>{{this.location}}</td>
-                <td>{{this.status}}</td>
-                <td>{{this.time}}</td>
-            </tr>
-        {{/each}}
-    </tbody>
+  <tbody>
+  {{#each tickets}}
+    <tr>
+      <td>{{this.issue}}</td>
+      <td>{{this.location}}</td>
+      <td>{{this.status}}</td>
+      <td>{{this.description}}</td>
+      <td>{{this.rating}}</td>
+      <td>{{this.time}}</td>
+      <td>{{this.user}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
 </table>
 
 <form action="/tickets" method="POST">
-    <input id="issue" type="text" name="issue" placeholder="Issue">
-    <input id="location" type="text" name="location" placeholder="Location">
-    <button id="addticket" name="addticket">Add Ticket</button>
+  <input id="issue" type="text" name="issue" placeholder="Issue">
+  <input id="location" type="text" name="location" placeholder="Location">
+  <input id="description" type="text" name="description" placeholder="Description">
+  <input id="rating" type="text" name="rating" placeholder="Rating">
+  <button id="addticket" name="addticket">Add Ticket</button>
 </form>

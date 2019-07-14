@@ -28,7 +28,7 @@ function search(req, res, next) {
   });
 }
 
-// Even though it says '/', the route is still '/search' because this file is named search.js
+// Routes search.hbs page to /search
 router.get('/', search, (req, res, next) => {
   let searchResult = req.searchResult;
   // The values are passed to search.hbs

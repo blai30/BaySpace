@@ -3,7 +3,7 @@ const database = require('../database');
 
 const router = express.Router();
 
-// Route is '/tickets'
+// Routes tickets.hbs page to /tickets
 router.get('/', (req, res, next) => {
   let sqlQuery = 'SELECT * FROM ticket';
   database.query(sqlQuery, (err, results, fields) => {

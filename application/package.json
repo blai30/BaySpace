@@ -4,7 +4,8 @@
   "description": "CSC 648 Team 5 App",
   "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "keywords": [],
   "author": "CSC 648 Team 5",
@@ -17,5 +18,7 @@
     "http-errors": "^1.7.3",
     "mysql": "^2.17.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
 }
