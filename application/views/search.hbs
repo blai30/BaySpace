@@ -1,8 +1,8 @@
 <h1>Welcome to database search</h1>
 
-<form>
-  <input id="search" type="text" name="search" value="{{searchTerm}}" placeholder="Search...">
-  <select name="category" onchange="this.form.submit()">
+<form class="form-inline">
+  <input id="search" class="form-control mr-sm-2" type="search" name="search" value="{{searchTerm}}" placeholder="Search...">
+  <select name="category" class="form-control" onchange="this.form.submit()">
     <option value="">All Categories</option>
     <option value="Issue">by Issue</option>
     <option value="Location">by Location</option>
