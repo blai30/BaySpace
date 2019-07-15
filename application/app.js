@@ -24,9 +24,6 @@ app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery')))
 app.use('/popper', express.static(path.join(__dirname, '/node_modules/popper')));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap')));
 
-// Route shards-ui and serve statically. Shards UI is the bootstrap UI kit we are using
-app.use('/shards-ui', express.static(path.join(__dirname, '/node_modules/shards-ui')));
-
 // Connect routes
 app.use('/', indexRouter);
 app.use('/about', aboutRouter);
