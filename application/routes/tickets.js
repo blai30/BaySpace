@@ -44,7 +44,9 @@ router.post('/', (req, res) => {
   // Creating a new ticket with user entered name and location
   let newTicket = {
     issue_id: req.body.issue_id,
-    location_id: req.body.location_id
+    location_id: req.body.location_id,
+    description: req.body.description,
+    rating: req.body.rating
   };
   let sqlQuery = 'INSERT INTO ticket SET ?';
   database.query(sqlQuery, newTicket, (err, result) => {
