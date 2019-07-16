@@ -2,13 +2,49 @@
 
 <form class="form-inline">
   <input id="search" class="form-control mr-sm-2" type="search" name="search" value="{{searchTerm}}" placeholder="Search...">
-  <select name="category" class="form-control" onchange="this.form.submit()">
-    <option value="">All Categories</option>
-    <option value="Issue">by Issue</option>
-    <option value="Location">by Location</option>
-    <option value="Status">by Status</option>
-    <option value="Description">by Description</option>
-    <option value="Rating">by Rating</option>
+  <select name="issuesCategory" class="form-control" onchange="this.form.submit()">
+    <option value="">All Issues</option>
+    <option value="Combustion Gas">Combustion Gas</option>
+    <option value="Cosmic Rays">Cosmic Rays</option>
+    <option value="Ebola">Ebola</option>
+    <option value="Extreme Winds">Extreme Winds</option>
+    <option value="Fallen Trees">Fallen Trees</option>
+    <option value="Fire">Fire</option>
+    <option value="Flood">Flood</option>
+    <option value="Heavy Snowfall">Heavy Snowfall</option>
+    <option value="High UV Index">High UV Index</option>
+    <option value="Nuclear Waste">Nuclear Waste</option>
+    <option value="Oil Spill">Oil Spill</option>
+    <option value="Pollen">Pollen</option>
+    <option value="Pollution">Pollution</option>
+    <option value="Rabies">Rabies</option>
+    <option value="Thunderstorms">Thunderstorms</option>
+    <option value="Tobacco">Tobacco</option>
+    <option value="Toxic Waste">Toxic Waste</option>
+  </select>
+  <select name="locationsCategory" class="form-control" onchange="this.form.submit()">
+    <option value="">All Locations</option>
+    <option value="Alcatraz Island">Alcatraz Island</option>
+    <option value="Angel Island">Angel Island</option>
+    <option value="Aquatic Park">Aquatic Park</option>
+    <option value="AT&T Park">AT&T Park</option>
+    <option value="Balboa Park">Balboa Park</option>
+    <option value="China Beach">China Beach</option>
+    <option value="Fort Funston">Fort Funston</option>
+    <option value="Fort Mason">Fort Mason</option>
+    <option value="Fort Miley">Fort Miley</option>
+    <option value="Glen Canyon Park">Glen Canyon Park</option>
+    <option value="Golden Gate Park">Golden Gate Park</option>
+    <option value="Japanese Tea Garden">Japanese Tea Garden</option>
+    <option value="Lake Merced">Lake Merced</option>
+    <option value="Lands End">Lands End</option>
+    <option value="Mount Sutro Forest">Mount Sutro Forest</option>
+    <option value="Muir Woods">Muir Woods</option>
+    <option value="Ocean Beach">Ocean Beach</option>
+    <option value="South Park">South Park</option>
+    <option value="The Presidio">The Presidio</option>
+    <option value="Twin Peaks">Twin Peaks</option>
+    <option value="Union Square">Union Square</option>
   </select>
 </form>
 
@@ -26,13 +62,13 @@
   <tbody>
   {{#each results}}
     <tr>
-      <td>{{this.issue}}</td>
-      <td>{{this.location}}</td>
+      <td>{{this.issue_id}}</td>
+      <td>{{this.location_id}}</td>
       <td>{{this.status}}</td>
       <td>{{this.description}}</td>
       <td>{{this.rating}}</td>
       <td>{{this.time}}</td>
-      <td>{{this.user}}</td>
+      <td>{{this.user_id}}</td>
     </tr>
   {{/each}}
   </tbody>

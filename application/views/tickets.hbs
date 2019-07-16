@@ -14,7 +14,7 @@
   <tbody>
   {{#each tickets}}
     <tr>
-      <td>{{this.issue}}</td>
+      <td>{{this.issue_id}}</td>
       <td>{{this.location_id}}</td>
       <td>{{this.status}}</td>
       <td>{{this.description}}</td>
@@ -27,9 +27,58 @@
 </table>
 
 <form action="/tickets" class="form-inline" method="POST">
-  <input id="issue" class="form-control" type="text" name="issue" placeholder="Issue">
-  <input id="location" class="form-control" type="text" name="location" placeholder="Location">
+  <select name="issue_id" class="form-control">
+    <option value="">Issue</option>
+    <option value="1">Combustion Gas</option>
+    <option value="2">Cosmic Rays</option>
+    <option value="3">Ebola</option>
+    <option value="4">Extreme Winds</option>
+    <option value="5">Fallen Trees</option>
+    <option value="6">Fire</option>
+    <option value="7">Flood</option>
+    <option value="8">Heavy Snowfall</option>
+    <option value="9">High UV Index</option>
+    <option value="10">Nuclear Waste</option>
+    <option value="11">Oil Spill</option>
+    <option value="12">Pollen</option>
+    <option value="13">Pollution</option>
+    <option value="14">Rabies</option>
+    <option value="15">Thunderstorms</option>
+    <option value="16">Tobacco</option>
+    <option value="17">Toxic Waste</option>
+  </select>
+  <select name="location_id" class="form-control">
+    <option value="">Location</option>
+    <option value="1">Alcatraz Island</option>
+    <option value="2">Angel Island</option>
+    <option value="3">Aquatic Park</option>
+    <option value="4">AT&T Park</option>
+    <option value="5">Balboa Park</option>
+    <option value="6">China Beach</option>
+    <option value="7">Fort Funston</option>
+    <option value="8">Fort Mason</option>
+    <option value="9">Fort Miley</option>
+    <option value="10">Glen Canyon Park</option>
+    <option value="11">Golden Gate Park</option>
+    <option value="12">Japanese Tea Garden</option>
+    <option value="13">Lake Merced</option>
+    <option value="14">Lands End</option>
+    <option value="15">Mount Sutro Forest</option>
+    <option value="16">Muir Woods</option>
+    <option value="17">Ocean Beach</option>
+    <option value="18">South Park</option>
+    <option value="19">The Presidio</option>
+    <option value="20">Twin Peaks</option>
+    <option value="21">Union Square</option>
+  </select>
   <input id="description" class="form-control" type="text" name="description" placeholder="Description">
-  <input id="rating" class="form-control" type="text" name="rating" placeholder="Rating">
+  <select name="rating" class="form-control">
+    <option value="">Rating</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
   <button id="addticket" class="form-control btn btn-success" name="addticket">Add Ticket</button>
 </form>
