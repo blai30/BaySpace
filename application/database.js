@@ -2,10 +2,13 @@ const mysql = require('mysql');
 
 // Connect to database
 const database = mysql.createConnection({
-  host: 'localhost',  // THIS WILL ONLY WORK WHEN THIS FILE RUNS FROM THE SERVER
+  // !!! IMPORTANT !!!
+  // RUN 'npm run dev' TO TEST ON LOCAL DEVELOPMENT MACHINE
+  host: 'localhost',
   user: 'root',
   password: 'admin',
-  // port: '33306',      // USE THIS PORT (33306) FOR TESTING ON LOCAL MACHINE, COMMENT THIS LINE OUT WHEN DEPLOYING TO SERVER
+  port: process.env.DB_PORT,  // DB PORT WILL BE 33306 WHEN USING 'npm run dev', OR 3306 WHEN RUNNING ON SERVER
+  // !!! IMPORTANT !!!
   // When testing on local machine, use SSH tunneling first:
   // ssh -N -p 22 -i ./credentials/csc648Summer.pem ubuntu@54.215.173.150 -L 33306:localhost:3306
   // This command assumes you are at the root of the repo: /csc648-su19-Team05/
