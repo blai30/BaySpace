@@ -13,7 +13,8 @@ const database = mysql.createConnection({
   // ssh -N -p 22 -i ./credentials/csc648Summer.pem ubuntu@54.215.173.150 -L 33306:localhost:3306
   // This command assumes you are at the root of the repo: /csc648-su19-Team05/
 
-  database: 'team5app'
+  database: 'team5app',
+  timezone: 'US/Pacific'
 });
 
 database.connect((err) => {
