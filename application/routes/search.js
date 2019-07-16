@@ -5,6 +5,8 @@ const router = express.Router();
 
 function search(req, res, next) {
   const searchTerm = req.query.search;
+  // const issuesCategory = req.query.issuesCategory;
+  // const locationsCategory = req.query.locationsCategory;
 
   // Default search query; if no search term was entered
   let sqlQuery =
@@ -42,7 +44,7 @@ function search(req, res, next) {
           'ON (ticket.location_id = location.id) ' +
         'LEFT JOIN user ' +
           'ON (ticket.user_id = user.id) ' +
-      'WHERE issue.issueName LIKE ' + `'%${searchTerm}%'`;
+      'WHERE (issue.issueName LIKE ' + `'%${searchTerm}%' OR location.locationName LIKE ` + `'%${searchTerm}%' OR ticket.description LIKE ` + `'%${searchTerm}')`;
   }
 
   // Display search results
