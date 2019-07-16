@@ -85,16 +85,7 @@ router.post('/', (req, res) => {
     res.render('tickets', {
       title: 'All tickets',
       tickets: results,
-
-      data: req.body,
-      errors: {
-        issue_id: {
-          msg: 'What is the issue?'
-        },
-        location_id: {
-          msg: 'Where is it located?'
-        }
-      }
+      data: req.body
     });
   });
 });
