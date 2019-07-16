@@ -9,6 +9,7 @@ router.get('/', (req, res, next) => {
   // The JOINs are used to fetch tables by foreign key
   let sqlQuery =
     'SELECT ' +
+      'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
       'ticket.status, ' +
@@ -17,6 +18,8 @@ router.get('/', (req, res, next) => {
       'ticket.time, ' +
       'user.userName ' +
     'FROM ticket ' +
+      'LEFT JOIN image ' +
+        'ON (ticket.image_id = image.id)' +
       'LEFT JOIN issue ' +
         'ON (ticket.issue_id = issue.id) ' +
       'LEFT JOIN location ' +

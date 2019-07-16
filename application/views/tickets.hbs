@@ -2,6 +2,7 @@
 
 <table class="table">
   <thead>
+    <th scope="col">Image</th>
     <th scope="col">Issue</th>
     <th scope="col">Location</th>
     <th scope="col">Status</th>
@@ -14,6 +15,7 @@
   <tbody>
   {{#each tickets}}
     <tr>
+      <td><img src="{{this.imagePath}}" alt="uploads/noimage.png" width="128" height="96"></td>
       <td>{{this.issueName}}</td>
       <td>{{this.locationName}}</td>
       <td>{{this.status}}</td>
