@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node index",
-    "dev": "NODE_ENV=development PORT=3000 DB_PORT=33306 nodemon index"
+    "dev": "nodemon -r dotenv/config index"
   },
   "keywords": [],
   "author": "CSC 648 Team 5",
@@ -21,6 +21,7 @@
     "popper.js": "^1.15.0"
   },
   "devDependencies": {
+    "dotenv": "^8.0.0",
     "nodemon": "^1.19.1"
   }
 }

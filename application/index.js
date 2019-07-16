@@ -9,6 +9,11 @@ const debug = require('debug')('application:server');
 const http = require('http');
 
 /**
+ * Set .env config for dev testing
+ */
+require('dotenv').config();
+
+/**
  * Get port from environment and store in Express.
  */
 // USE PORT 80 WHEN RUNNING ON SERVER. MAKE SURE THE PORT IS 80 WHEN UPLOADING THIS FILE TO SERVER

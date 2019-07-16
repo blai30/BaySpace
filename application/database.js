@@ -4,9 +4,9 @@ const mysql = require('mysql');
 const database = mysql.createConnection({
   // !!! IMPORTANT !!!
   // RUN 'npm run dev' TO TEST ON LOCAL DEVELOPMENT MACHINE
-  host: 'localhost',
-  user: 'root',
-  password: 'admin',
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASS || 'admin',
   port: process.env.DB_PORT,  // DB PORT WILL BE 33306 WHEN USING 'npm run dev', OR 3306 WHEN RUNNING ON SERVER
   // !!! IMPORTANT !!!
   // When testing on local machine, use SSH tunneling first:
