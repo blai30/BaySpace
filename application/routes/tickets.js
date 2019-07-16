@@ -5,7 +5,22 @@ const router = express.Router();
 
 // Routes tickets.hbs page to /tickets
 router.get('/', (req, res, next) => {
-  let sqlQuery = 'SELECT * FROM ticket';
+  let sqlQuery =
+    'SELECT ' +
+      'issue.issueName, ' +
+      'location.locationName, ' +
+      'ticket.status, ' +
+      'ticket.description, ' +
+      'ticket.rating, ' +
+      'ticket.time, ' +
+      'user.userName ' +
+    'FROM ticket ' +
+      'LEFT JOIN issue ' +
+        'ON (ticket.issue_id = issue.id) ' +
+      'LEFT JOIN location ' +
+        'ON (ticket.location_id = location.id) ' +
+      'LEFT JOIN user ' +
+        'ON (ticket.user_id = user.id)';
   database.query(sqlQuery, (err, results, fields) => {
     if (err) {
       throw err;
@@ -38,7 +53,22 @@ router.post('/', (req, res) => {
   });
 
   // Display updated tickets table
-  let sqlQuery2 = 'SELECT * FROM ticket';
+  let sqlQuery2 =
+    'SELECT ' +
+      'issue.issueName, ' +
+      'location.locationName, ' +
+      'ticket.status, ' +
+      'ticket.description, ' +
+      'ticket.rating, ' +
+      'ticket.time, ' +
+      'user.userName ' +
+    'FROM ticket ' +
+      'LEFT JOIN issue ' +
+        'ON (ticket.issue_id = issue.id) ' +
+      'LEFT JOIN location ' +
+        'ON (ticket.location_id = location.id) ' +
+      'LEFT JOIN user ' +
+        'ON (ticket.user_id = user.id)';
   database.query(sqlQuery2, (err, results, fields) => {
     if (err) {
       throw err;
