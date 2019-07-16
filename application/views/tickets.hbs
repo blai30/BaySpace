@@ -20,7 +20,13 @@
       <td>{{this.description}}</td>
       <td>{{this.rating}}</td>
       <td>{{this.time}}</td>
-      <td>{{this.userName}}</td>
+
+      <!-- Print username of user who submitted ticket, or anonymous -->
+      {{#if this.userName}}
+        <td>{{this.userName}}</td>
+      {{else}}
+        <td>anonymous</td>
+      {{/if}}
     </tr>
   {{/each}}
   </tbody>

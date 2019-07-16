@@ -45,8 +45,8 @@ router.post('/', (req, res) => {
   let newTicket = {
     issue_id: req.body.issue_id,
     location_id: req.body.location_id,
-    description: req.body.description,
-    rating: req.body.rating
+    description: (!req.body.description) ? 'no details' : req.body.description,
+    rating: (!req.body.rating) ? '1' : req.body.rating
   };
   let sqlQuery = 'INSERT INTO ticket SET ?';
   database.query(sqlQuery, newTicket, (err, result) => {
