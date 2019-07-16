@@ -9,6 +9,7 @@ router.get('/', (req, res, next) => {
   // The JOINs are used to fetch tables by foreign key
   let sqlQuery =
     'SELECT ' +
+      'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
       'ticket.status, ' +
@@ -17,6 +18,8 @@ router.get('/', (req, res, next) => {
       'ticket.time, ' +
       'user.userName ' +
     'FROM ticket ' +
+      'LEFT JOIN image ' +
+        'ON (ticket.image_id = image.id)' +
       'LEFT JOIN issue ' +
         'ON (ticket.issue_id = issue.id) ' +
       'LEFT JOIN location ' +
@@ -45,8 +48,8 @@ router.post('/', (req, res) => {
   let newTicket = {
     issue_id: req.body.issue_id,
     location_id: req.body.location_id,
-    description: req.body.description,
-    rating: req.body.rating
+    description: (!req.body.description) ? 'no details' : req.body.description,
+    rating: (!req.body.rating) ? '1' : req.body.rating
   };
   let sqlQuery = 'INSERT INTO ticket SET ?';
   database.query(sqlQuery, newTicket, (err, result) => {
@@ -85,16 +88,7 @@ router.post('/', (req, res) => {
     res.render('tickets', {
       title: 'All tickets',
       tickets: results,
-
-      data: req.body,
-      errors: {
-        issue_id: {
-          msg: 'What is the issue?'
-        },
-        location_id: {
-          msg: 'Where is it located?'
-        }
-      }
+      data: req.body
     });
   });
 });

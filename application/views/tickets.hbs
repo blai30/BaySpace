@@ -2,6 +2,7 @@
 
 <table class="table">
   <thead>
+    <th scope="col">Image</th>
     <th scope="col">Issue</th>
     <th scope="col">Location</th>
     <th scope="col">Status</th>
@@ -14,13 +15,20 @@
   <tbody>
   {{#each tickets}}
     <tr>
+      <td><img src="{{this.imagePath}}" alt="uploads/noimage.png" width="128" height="96"></td>
       <td>{{this.issueName}}</td>
       <td>{{this.locationName}}</td>
       <td>{{this.status}}</td>
       <td>{{this.description}}</td>
       <td>{{this.rating}}</td>
       <td>{{this.time}}</td>
-      <td>{{this.userName}}</td>
+
+      <!-- Print username of user who submitted ticket, or anonymous -->
+      {{#if this.userName}}
+        <td>{{this.userName}}</td>
+      {{else}}
+        <td>anonymous</td>
+      {{/if}}
     </tr>
   {{/each}}
   </tbody>
@@ -48,6 +56,7 @@
     <option value="16">Tobacco</option>
     <option value="17">Toxic Waste</option>
   </select>
+
   <select name="location_id" class="form-control">
     <option value="">Location</option>
     <option value="1">Alcatraz Island</option>
@@ -72,7 +81,9 @@
     <option value="20">Twin Peaks</option>
     <option value="21">Union Square</option>
   </select>
+
   <input id="description" class="form-control" type="text" name="description" placeholder="Description">
+
   <select name="rating" class="form-control">
     <option value="">Rating</option>
     <option value="1">1</option>
@@ -81,5 +92,8 @@
     <option value="4">4</option>
     <option value="5">5</option>
   </select>
+
+  <input id="image" class="form-control" type="file" name="image" accept="image/*">
+
   <button id="addticket" class="form-control btn btn-success" name="addticket">Add Ticket</button>
 </form>

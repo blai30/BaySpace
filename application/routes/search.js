@@ -6,9 +6,43 @@ const router = express.Router();
 function search(req, res, next) {
   const searchTerm = req.query.search;
 
-  let sqlQuery = 'SELECT * FROM ticket';
+  // Default search query; if no search term was entered
+  let sqlQuery =
+    'SELECT ' +
+      'issue.issueName, ' +
+      'location.locationName, ' +
+      'ticket.status, ' +
+      'ticket.description, ' +
+      'ticket.rating, ' +
+      'ticket.time, ' +
+      'user.userName ' +
+    'FROM ticket ' +
+      'LEFT JOIN issue ' +
+        'ON (ticket.issue_id = issue.id) ' +
+      'LEFT JOIN location ' +
+        'ON (ticket.location_id = location.id) ' +
+      'LEFT JOIN user ' +
+        'ON (ticket.user_id = user.id)';
+
+  // If a search term is entered
   if (searchTerm !== '') {
-    sqlQuery = `SELECT * FROM ticket WHERE issue LIKE '%` + searchTerm + `%'`;
+    sqlQuery =
+      'SELECT ' +
+        'issue.issueName, ' +
+        'location.locationName, ' +
+        'ticket.status, ' +
+        'ticket.description, ' +
+        'ticket.rating, ' +
+        'ticket.time, ' +
+        'user.userName ' +
+      'FROM ticket ' +
+        'LEFT JOIN issue ' +
+          'ON (ticket.issue_id = issue.id) ' +
+        'LEFT JOIN location ' +
+          'ON (ticket.location_id = location.id) ' +
+        'LEFT JOIN user ' +
+          'ON (ticket.user_id = user.id) ' +
+      'WHERE issue.issueName LIKE ' + `'%${searchTerm}%'`;
   }
 
   // Display search results
