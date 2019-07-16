@@ -5,6 +5,8 @@ const router = express.Router();
 
 // Routes tickets.hbs page to /tickets
 router.get('/', (req, res, next) => {
+  // Display ticket table
+  // The JOINs are used to fetch tables by foreign key
   let sqlQuery =
     'SELECT ' +
       'issue.issueName, ' +
@@ -52,7 +54,8 @@ router.post('/', (req, res) => {
     console.log(result);
   });
 
-  // Display updated tickets table
+  // Display updated ticket table
+  // The JOINs are used to fetch tables by foreign key
   let sqlQuery2 =
     'SELECT ' +
       'issue.issueName, ' +
