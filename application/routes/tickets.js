@@ -1,5 +1,6 @@
 const express = require('express');
 const database = require('../database');
+const upload = require('../multer');
 
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.get('/', (req, res, next) => {
       'user.userName ' +
     'FROM ticket ' +
       'LEFT JOIN image ' +
-        'ON (ticket.image_id = image.id)' +
+        'ON (ticket.image_id = image.id) ' +
       'LEFT JOIN issue ' +
         'ON (ticket.issue_id = issue.id) ' +
       'LEFT JOIN location ' +
@@ -44,6 +45,17 @@ router.get('/', (req, res, next) => {
 
 // This is for adding items to database
 router.post('/', (req, res) => {
+  // MULTER UPLOAD HERE
+  upload(req, res, (err) => {
+    if (err) {
+      res.render('index', {
+        msg: err
+      });
+    } else {
+      console.log(req.file);
+    }
+  });
+
   // Creating a new ticket with user entered name and location
   let newTicket = {
     issue_id: req.body.issue_id,
@@ -71,6 +83,8 @@ router.post('/', (req, res) => {
       'ticket.time, ' +
       'user.userName ' +
     'FROM ticket ' +
+      'LEFT JOIN image ' +
+        'ON (ticket.image_id = image.id) ' +
       'LEFT JOIN issue ' +
         'ON (ticket.issue_id = issue.id) ' +
       'LEFT JOIN location ' +
