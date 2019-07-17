@@ -35,7 +35,7 @@
 </table>
 
 <!-- The value tags correspond to the id in the database tables -->
-<form action="/tickets" class="form-inline" method="POST">
+<form action="/tickets" class="form-inline" method="POST" enctype="multipart/form-data">
   <select name="issue_id" class="form-control">
     <option value="">Issue</option>
     <option value="1">Combustion Gas</option>
@@ -97,3 +97,5 @@
 
   <button id="addticket" class="form-control btn btn-success" name="addticket" type="submit">Add Ticket</button>
 </form>
+
+{{msg}}

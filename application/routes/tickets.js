@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
       'user.userName ' +
     'FROM ticket ' +
       'LEFT JOIN image ' +
-        'ON (ticket.image_id = image.id)' +
+        'ON (ticket.image_id = image.id) ' +
       'LEFT JOIN issue ' +
         'ON (ticket.issue_id = issue.id) ' +
       'LEFT JOIN location ' +
@@ -84,7 +84,7 @@ router.post('/', (req, res) => {
       'user.userName ' +
     'FROM ticket ' +
       'LEFT JOIN image ' +
-        'ON (ticket.image_id = image.id)' +
+        'ON (ticket.image_id = image.id) ' +
       'LEFT JOIN issue ' +
         'ON (ticket.issue_id = issue.id) ' +
       'LEFT JOIN location ' +
