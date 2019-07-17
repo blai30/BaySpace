@@ -11,6 +11,7 @@ function search(req, res, next) {
   // Default search query; if no search term was entered
   let sqlQuery =
     'SELECT ' +
+      'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
       'ticket.status, ' +
@@ -19,6 +20,8 @@ function search(req, res, next) {
       'ticket.time, ' +
       'user.userName ' +
     'FROM ticket ' +
+      'LEFT JOIN image ' +
+        'ON (ticket.image_id = image.id)' +
       'LEFT JOIN issue ' +
         'ON (ticket.issue_id = issue.id) ' +
       'LEFT JOIN location ' +
@@ -30,6 +33,7 @@ function search(req, res, next) {
   if (searchTerm !== '') {
     sqlQuery =
       'SELECT ' +
+        'image.imagePath, ' +
         'issue.issueName, ' +
         'location.locationName, ' +
         'ticket.status, ' +
@@ -38,6 +42,8 @@ function search(req, res, next) {
         'ticket.time, ' +
         'user.userName ' +
       'FROM ticket ' +
+        'LEFT JOIN image ' +
+          'ON (ticket.image_id = image.id)' +
         'LEFT JOIN issue ' +
           'ON (ticket.issue_id = issue.id) ' +
         'LEFT JOIN location ' +

@@ -83,6 +83,8 @@ router.post('/', (req, res) => {
       'ticket.time, ' +
       'user.userName ' +
     'FROM ticket ' +
+      'LEFT JOIN image ' +
+        'ON (ticket.image_id = image.id)' +
       'LEFT JOIN issue ' +
         'ON (ticket.issue_id = issue.id) ' +
       'LEFT JOIN location ' +
