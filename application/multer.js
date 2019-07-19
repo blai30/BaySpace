@@ -4,19 +4,21 @@ const multer = require('multer');
 // Set Storage Engine
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'public/images/uploads'));
+    cb(null, path.join(__dirname, 'public/uploads'));
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
   }
 });
 
-// init upload
+// Initialize upload module
 const upload = multer({
+  // dest: 'uploads/',
   storage: storage,
   limits: {
+    // Max file size allowed; 10 megabytes
     fileSize: 1000000000
   }
-}).single('MYIMG');
+}).single('uploadImage'); // This name comes from the input field for type="file" in tickets.hbs; name="uploadImage"
 
-module.exports = upload;
+module.exports = upload;  // Use this module by 'const upload = require('../multer');'
