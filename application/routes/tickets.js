@@ -4,8 +4,7 @@ const upload = require('../multer');
 
 const router = express.Router();
 
-// Routes tickets.hbs page to /tickets
-router.get('/', (req, res, next) => {
+function displayTickets(req, res, next) {
   // Display ticket table
   // The JOINs are used to fetch tables by foreign key
   let sqlQuery =
@@ -38,13 +37,19 @@ router.get('/', (req, res, next) => {
     // Display tickets table
     res.render('tickets', {
       title: 'All tickets',
-      tickets: results
+      tickets: results,
+      data: req.body
     });
   });
+}
+
+// Routes tickets.hbs page to /tickets
+router.get('/', (req, res, next) => {
+  displayTickets(req, res, next);
 });
 
 // This is for adding items to database
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   // MULTER UPLOAD HERE
   upload(req, res, (err) => {
     if (err) {
@@ -71,40 +76,7 @@ router.post('/', (req, res) => {
     console.log(result);
   });
 
-  // Display updated ticket table
-  // The JOINs are used to fetch tables by foreign key
-  let sqlQuery2 =
-    'SELECT ' +
-      'issue.issueName, ' +
-      'location.locationName, ' +
-      'ticket.status, ' +
-      'ticket.description, ' +
-      'ticket.rating, ' +
-      'ticket.time, ' +
-      'user.userName ' +
-    'FROM ticket ' +
-      'LEFT JOIN image ' +
-        'ON (ticket.image_id = image.id) ' +
-      'LEFT JOIN issue ' +
-        'ON (ticket.issue_id = issue.id) ' +
-      'LEFT JOIN location ' +
-        'ON (ticket.location_id = location.id) ' +
-      'LEFT JOIN user ' +
-        'ON (ticket.user_id = user.id)';
-  database.query(sqlQuery2, (err, results, fields) => {
-    if (err) {
-      throw err;
-    }
-
-    console.log('Fetched tickets table from database');
-    console.log(results);
-
-    res.render('tickets', {
-      title: 'All tickets',
-      tickets: results,
-      data: req.body
-    });
-  });
+  displayTickets(req, res, next);
 });
 
 module.exports = router;
