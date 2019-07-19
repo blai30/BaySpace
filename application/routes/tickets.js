@@ -4,7 +4,7 @@ const upload = require('../multer');
 
 const router = express.Router();
 
-function displayTickets(req, res, next) {
+function displayTickets(req, res) {
   // Display ticket table
   // The JOINs are used to fetch tables by foreign key
   let sqlQuery =
@@ -45,7 +45,7 @@ function displayTickets(req, res, next) {
 
 // Routes tickets.hbs page to /tickets
 router.get('/', (req, res, next) => {
-  displayTickets(req, res, next);
+  displayTickets(req, res);
 });
 
 // This is for adding items to database
@@ -57,26 +57,30 @@ router.post('/', (req, res, next) => {
         msg: err
       });
     } else {
-      console.log(req.file);
+      console.log(req.body.image);
     }
   });
+
+  console.log(req.body);
 
   // Creating a new ticket with user entered name and location
   let newTicket = {
     issue_id: req.body.issue_id,
     location_id: req.body.location_id,
     description: (!req.body.description) ? 'no details' : req.body.description,
-    rating: (!req.body.rating) ? '1' : req.body.rating
+    rating: (!req.body.rating) ? '1' : req.body.rating,
+    image_id: 0
   };
-  let sqlQuery = 'INSERT INTO ticket SET ?';
-  database.query(sqlQuery, newTicket, (err, result) => {
+  let query = database.query('INSERT INTO ticket SET ?', newTicket, (err, result) => {
     if (err) {
       throw err;
     }
     console.log(result);
   });
 
-  displayTickets(req, res, next);
+  console.log(query.sql);
+
+  displayTickets(req, res);
 });
 
 module.exports = router;
