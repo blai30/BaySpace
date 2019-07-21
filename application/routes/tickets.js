@@ -57,9 +57,6 @@ router.post('/', upload, (req, res, next) => {
   // Retrieve uploaded file from the request
   const uploadedFile = req.file;
 
-  // ID of the image to be used when inserting new ticket, default is 0
-  let newImageId = 0;
-
   // Uploaded file is not undefined
   if (uploadedFile) {
     console.log(`Uploaded file: ${uploadedFile.filename}`);
@@ -73,45 +70,68 @@ router.post('/', upload, (req, res, next) => {
     };
     console.log(newImage);
 
+    // Print contents of body (form submission values)
+    console.log(req.body);
+
     // Insert newImage into database table 'image'
     let query = database.query('INSERT INTO image SET ?', newImage, (err, result) => {
       if (err) {
         console.log('Error inserting newImage into image');
         throw err;
       }
+
       console.log(result);
       console.log(`result.insertId: ${result.insertId}`);
 
-      // Store the id of the image that was just inserted
-      newImageId = result.insertId;
+      /*
+        ADDING NEW TICKET TO DATABASE WITH UPLOADED IMAGE
+      */
+      // Create new ticket object to be inserted into database table 'ticket'
+      let newTicket = {
+        issue_id: req.body.issue_id,
+        location_id: req.body.location_id,
+        description: (!req.body.description) ? 'no details' : req.body.description,
+        rating: (!req.body.rating) ? '1' : req.body.rating,
+        image_id: result.insertId   // Image id is the id of the new uploaded image
+      };
+
+      // Insert newTicket into database table 'ticket'
+      let query = database.query('INSERT INTO ticket SET ?', newTicket, (err, result) => {
+        if (err) {
+          console.log('Error inserting newTicket into ticket');
+          throw err;
+        }
+
+        console.log(result);
+      });
+
+      console.log(query.sql);
     });
+  } else {  // NO IMAGE WAS UPLOADED OR ERROR UPLOADING IMAGE
+    /*
+      ADDING NEW TICKET TO DATABASE WITH NO IMAGE
+    */
+    // Create new ticket object to be inserted into database table 'ticket'
+    let newTicket = {
+      issue_id: req.body.issue_id,
+      location_id: req.body.location_id,
+      description: (!req.body.description) ? 'no details' : req.body.description,
+      rating: (!req.body.rating) ? '1' : req.body.rating,
+      image_id: 0   // Image id is 0 by default if no image was uploaded
+    };
+
+    // Insert newTicket into database table 'ticket'
+    let query = database.query('INSERT INTO ticket SET ?', newTicket, (err, result) => {
+      if (err) {
+        console.log('Error inserting newTicket into ticket');
+        throw err;
+      }
+
+      console.log(result);
+    });
+
     console.log(query.sql);
   }
-
-  // Print contents of body (form submission values)
-  console.log(req.body);
-
-  /*
-    ADDING NEW TICKET TO DATABASE
-   */
-  // Create new ticket object to be inserted into database table 'ticket'
-  let newTicket = {
-    issue_id: req.body.issue_id,
-    location_id: req.body.location_id,
-    description: (!req.body.description) ? 'no details' : req.body.description,
-    rating: (!req.body.rating) ? '1' : req.body.rating,
-    image_id: newImageId  // Here is the id of the image that was just uploaded and inserted into database. 0 if image did not get inserted to table 'image'
-  };
-
-  // Insert newTicket into database table 'ticket'
-  let query = database.query('INSERT INTO ticket SET ?', newTicket, (err, result) => {
-    if (err) {
-      console.log('Error inserting newTicket into ticket');
-      throw err;
-    }
-    console.log(result);
-  });
-  console.log(query.sql);
 
   // Display table of tickets
   displayTickets(req, res);
