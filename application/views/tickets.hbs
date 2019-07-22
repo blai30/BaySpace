@@ -15,7 +15,7 @@
   <tbody>
   {{#each tickets}}
     <tr>
-      <td><img src="{{this.imagePath}}" alt="uploads/noimage.png" width="128" height="96"></td>
+      <td><img src="{{#if this.imagePath}}{{this.imagePath}}{{else}}uploads/noimage.png{{/if}}" alt="Image error" width="128" height="96"></td>
       <td>{{this.issueName}}</td>
       <td>{{this.locationName}}</td>
       <td>{{this.status}}</td>
