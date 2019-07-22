@@ -106,6 +106,9 @@ router.post('/', upload, (req, res, next) => {
       });
 
       console.log(query.sql);
+
+      // Display table of tickets
+      displayTickets(req, res);
     });
   } else {  // NO IMAGE WAS UPLOADED OR ERROR UPLOADING IMAGE
     /*
@@ -131,10 +134,10 @@ router.post('/', upload, (req, res, next) => {
     });
 
     console.log(query.sql);
-  }
 
-  // Display table of tickets
-  displayTickets(req, res);
+    // Display table of tickets
+    displayTickets(req, res);
+  }
 });
 
 module.exports = router;
