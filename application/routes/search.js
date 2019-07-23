@@ -4,7 +4,7 @@ const database = require('../database');
 const router = express.Router();
 
 function search(req, res, next) {
-  const searchTerm = req.query.search;
+  const searchTerm = req.query.searchTerm;
   const issuesCategory = req.query.issuesCategory;
   const locationsCategory = req.query.locationsCategory;
 
@@ -74,13 +74,21 @@ function search(req, res, next) {
 }
 
 // Routes search.hbs page to /search
-router.get('/', search, (req, res, next) => {
+router.get('/', (req, res, next) => {
+  res.render('search', {
+    title: 'Search Database'
+  });
+});
+
+router.post('/', search, (req, res, next) => {
   let searchResult = req.searchResult;
   // The values are passed to search.hbs
   res.render('search', {
     title: 'Search Database',
+    searchTerm: req.body.searchTerm,  // Persist search query
     numResults: searchResult.length,
-    results: searchResult
+    results: searchResult,            // Pass results to front end
+    msg: (searchResult.length <= 0) ? 'No results found.' : ''  // Display message when no results
   });
 });
 

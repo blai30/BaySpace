@@ -1,7 +1,7 @@
 <h1>Welcome to database search</h1>
 
-<form class="form-inline">
-  <input id="search" class="form-control" type="search" name="search" value="{{searchTerm}}" placeholder="Search issue, location, or description">
+<form class="form-inline" method="post">
+  <input id="searchTerm" class="form-control" type="search" name="searchTerm" value="{{searchTerm}}" placeholder="Search issue, location, or description">
 
   <select id="issuesCategory" name="issuesCategory" class="form-control">
     <option value="">All Issues</option>
@@ -49,7 +49,7 @@
     <option value="Union Square">Union Square</option>
   </select>
 
-  <button class="btn btn-success" type="submit">Search</button>
+  <button id="searchButton" class="btn btn-success" name="searchButton" type="submit">Search</button>
 </form>
 
 <table class="table">
@@ -67,7 +67,7 @@
   <tbody>
   {{#each results}}
     <tr>
-      <td><img src="{{this.imagePath}}" alt="uploads/noimage.png" width="128" height="96"></td>
+      <td><img src="{{this.imagePath}}" alt="Image error" width="128" height="96"></td>
       <td>{{this.issueName}}</td>
       <td>{{this.locationName}}</td>
       <td>{{this.status}}</td>
@@ -85,3 +85,5 @@
   {{/each}}
   </tbody>
 </table>
+
+{{msg}}
