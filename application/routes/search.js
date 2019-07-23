@@ -4,9 +4,10 @@ const database = require('../database');
 const router = express.Router();
 
 function search(req, res, next) {
-  const searchTerm = req.query.searchTerm;
-  const issuesCategory = req.query.issuesCategory;
-  const locationsCategory = req.query.locationsCategory;
+  // Read values from user input from front end
+  const searchTerm = req.body.searchTerm;
+  const issuesCategory = req.body.issuesCategory;
+  const locationsCategory = req.body.locationsCategory;
 
   // Default search query; if no search term was entered
   let sqlQuery =
@@ -29,7 +30,7 @@ function search(req, res, next) {
       'LEFT JOIN user ' +
         'ON (ticket.user_id = user.id) ';
 
-  // If a search term is entered
+  // If a search term is entered, add additional filters based on user input from front end
   if (searchTerm !== '') {
     sqlQuery += 'WHERE (issue.issueName LIKE ' + `'%${searchTerm}%' OR location.locationName LIKE ` + `'%${searchTerm}%' OR ticket.description LIKE ` + `'%${searchTerm}') `;
 
@@ -54,6 +55,7 @@ function search(req, res, next) {
     }
   }
 
+  // Preview query in console
   console.log(sqlQuery);
 
   // Display search results
@@ -61,13 +63,14 @@ function search(req, res, next) {
     if (err) {
       req.searchResult = '';
       req.searchTerm = '';
-      // req.searchCategory = '';
       next();
     }
 
     req.searchResult = result;
     req.searchTerm = searchTerm;
-    // req.searchCategory = '';
+
+    // Log results in console (JSON format)
+    console.log(result);
 
     next();
   });
@@ -80,6 +83,7 @@ router.get('/', (req, res, next) => {
   });
 });
 
+// When user clicks search button, post is called
 router.post('/', search, (req, res, next) => {
   let searchResult = req.searchResult;
   // The values are passed to search.hbs
