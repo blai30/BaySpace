@@ -1,7 +1,8 @@
-const express = require("express");
+const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
-const hbs = require("hbs");
+const hbs = require('hbs');
+const bodyParser = require('body-parser');
 
 // Routers
 const indexRouter = require('./routes/index');
@@ -15,7 +16,8 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve files statically, bootstrap directories
 app.use(express.static(path.join(__dirname, 'public')));
