@@ -65,3 +65,7 @@ body {
 .collapse navbar-collapse{
   text-align: right;
 }
+
+.card-title{
+  text-align: center;
+}
