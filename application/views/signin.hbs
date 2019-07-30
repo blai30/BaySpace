@@ -1,65 +1,17 @@
-<!-- Sign in and registration page -->
-
-<div class="row justify-content-between align-items-center">
-
-  <div class="col-4">
-    <!-- Sign In form -->
-    <form>
-      <div class="form-group">
-        <label for="inputEmail">Email address</label>
-        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="check">
-        <label class="form-check-label" for="check">Remember me</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Sign In</button>
-    </form>
+<!-- Sign In form -->
+<form method="post" action="/users/signin">
+  <div class="form-group">
+    <label for="inputEmail">Email address</label>
+    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
-
-  <h1>OR</h1>
-
-  <div class="col-4">
-    <!-- Sign Up form -->
-    <form>
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <label for="inputFirst">First Name</label>
-            <input type="text" class="form-control" id="inputFirst" placeholder="First Name">
-          </div>
-        </div>
-        <div class="col">
-          <div class="form-group">
-            <label for="inputLast">Last Name</label>
-            <input type="text" class="form-control" id="inputLast" placeholder="Last Name">
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputEmail">Email address</label>
-        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">Confirm Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password">
-      </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="check">
-        <label class="form-check-label" for="check">I agree to the Terms of Service and Privacy Policy.</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
   </div>
-
-</div> <!-- End of row -->
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="check">
+    <label class="form-check-label" for="check">Remember me</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign In</button>
+</form>

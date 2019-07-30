@@ -4,14 +4,14 @@ const path = require('path');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 
+const app = express();
+
 // Routers
 const indexRouter = require('./routes/index');
 const aboutRouter = require('./routes/about');
-const signinRouter = require('./routes/signin');
+const usersRouter = require('./routes/users');
 const searchRouter = require('./routes/search');
 const ticketsRouter = require('./routes/tickets');
-
-const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +30,7 @@ app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstr
 // Connect routes
 app.use('/', indexRouter);
 app.use('/about', aboutRouter);
-app.use('/signin', signinRouter);
+app.use('/users', usersRouter);
 app.use('/search', searchRouter);
 app.use('/tickets', ticketsRouter);
 
