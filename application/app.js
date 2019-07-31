@@ -1,8 +1,10 @@
 const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
-const hbs = require('hbs');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 const app = express();
 
@@ -18,6 +20,24 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
+
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}));
+
+app.use(flash());
+
+// Initialize global variables
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 // Serve files statically, bootstrap directories
 app.use(express.static(path.join(__dirname, 'public')));

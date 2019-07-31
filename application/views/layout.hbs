@@ -90,6 +90,18 @@
         </nav>
 
         <div class="container-fluid">
+          {{#if success_msg}}
+            <div class="alert alert-success">{{success_msg}}</div>
+          {{/if}}
+
+          {{#if error_msg}}
+            <div class="alert alert-danger">{{error_msg}}</div>
+          {{/if}}
+
+          {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+          {{/if}}
+
           <!-- body is where .hbs files will display content -->
           {{{body}}}
         </div>

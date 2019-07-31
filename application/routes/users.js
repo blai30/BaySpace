@@ -1,5 +1,8 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
+
+const database = require('../database');
 
 const router = express.Router();
 
@@ -35,6 +38,13 @@ router.post('/register', [
       max: 40
     }),
 
+  // Check username length
+  check('userName', 'Username is required to be 2-40 characters')
+    .isLength({
+      min: 2,
+      max: 40
+    }),
+
   // Check valid email
   check('email', 'Email is invalid')
     .isLength({
@@ -60,25 +70,65 @@ router.post('/register', [
   // Grab the input fields and store them in variables
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
+  const userName = req.body.userName;
   const email = req.body.email;
   const password = req.body.password;
   const password2 = req.body.password2;
 
   // Handle errors
   let errors = validationResult(req);
-  if (errors) {
+  if (!errors.isEmpty()) {
+    /*
+      ERROR IN REGISTRATION, CANNOT CREATE NEW USER
+     */
+
     console.log('Error in registration');
     console.log(errors);
+
+    // Refresh the page but keep input field values
     res.render('register', {
       // Persist input fields (keep what the user typed instead of erasing it) except password
       firstName: firstName,
       lastName: lastName,
+      userName: userName,
       email: email,
 
       // Pass error messages to front end
       errors: errors.array()
     });
   } else {
+    /*
+      CREATING NEW USER ACCOUNT AND ADDING TO DATABASE
+     */
+
+    const saltRounds = 10;
+    // Encrypt new user password with hash salts
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+      // Create new user object to be inserted into database table 'user'
+      let newUser = {
+        firstName: firstName,
+        lastName: lastName,
+        userName: userName,
+        email: email,
+        password: hash
+      };
+
+      // Insert newUser into database table 'user'
+      let query = database.query('INSERT INTO user SET ?', newUser, (err, result) => {
+        if (err) {
+          console.log('Error inserting newUser into user');
+          throw err;
+        }
+
+        console.log(result);
+      });
+
+      console.log(query.sql);
+
+      req.flash('success_msg', 'Thank you for registering! You may now sign in.');
+      res.redirect('/users/signin');
+    });
+
     console.log('Registration successful');
   }
 });
