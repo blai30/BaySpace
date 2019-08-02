@@ -1,3 +1,8 @@
+/*
+  app.js
+  This file sets up the server back-end with routes, view engine, static directories, and more. This file is NOT the entry point to the application. The entry point is index.js.
+ */
+
 const express = require('express');
 const createError = require('http-errors');
 const path = require('path');

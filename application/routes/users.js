@@ -1,3 +1,8 @@
+/*
+  users.js
+  This is the back-end for all user account related pages. Sign-in/login and register functionality are written here.
+ */
+
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');

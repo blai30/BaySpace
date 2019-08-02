@@ -1,3 +1,8 @@
+/*
+  tickets.js
+  This is the back-end of the tickets page for the app. The tickets page displays all tickets stored on the database using a MySQL query. Tickets may also be added from this page with an accompanying image.
+ */
+
 const express = require('express');
 const path = require('path');
 const database = require('../database');

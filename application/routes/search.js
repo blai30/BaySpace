@@ -1,3 +1,8 @@
+/*
+  search.js
+  This is the back-end of the search page for the app. The search functionality uses MySQL queries to fetch information on database tables.
+ */
+
 const express = require('express');
 const database = require('../database');
 
