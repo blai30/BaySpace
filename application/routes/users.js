@@ -7,7 +7,7 @@ const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
-const database = require('../database');
+const database = require('../config/database');
 
 const router = express.Router();
 

@@ -5,8 +5,8 @@
 
 const express = require('express');
 const path = require('path');
-const database = require('../database');
-const upload = require('../multer');
+const database = require('../config/database');
+const upload = require('../config/multer');
 
 const router = express.Router();
 
