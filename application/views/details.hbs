@@ -1,0 +1,51 @@
+<!-- Front-end for details page of the ticket after clicking more details from search results -->
+
+<h1>Details for ticket</h1>
+
+<br>
+
+<h3>Ticket id: {{ticket.id}}</h3>
+
+<br>
+
+<!-- Clickable image takes user to the image in new tab -->
+<a href="
+  {{#if ticket.imagePath}}
+    http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{ticket.imagePath}}
+  {{else}}
+    http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
+  {{/if}}" target="_blank">
+
+  <!-- The image itself -->
+  <img src="
+    {{#if ticket.imagePath}}
+      http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{ticket.imagePath}}
+    {{else}}
+      http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
+    {{/if}}" alt="Error loading image" class="img-fluid">
+</a>
+
+<br>
+
+<!-- General information about the ticket -->
+<h4>Issue Name: {{ticket.issueName}}</h4>
+<h4>Location Name: {{ticket.locationName}}</h4>
+<h4>Rating: {{ticket.rating}}</h4>
+<h4>Description: {{ticket.description}}</h4>
+
+<br>
+
+<!-- Information on the ticket's submission -->
+<h4>Submitted by User:
+  {{#if ticket.userName}}
+    {{ticket.userName}}
+  {{else}}
+    anonymous
+  {{/if}}
+</h4>
+<h4>Submitted at time: {{ticket.time}}</h4>
+
+<br>
+
+<!-- The status of the ticket -->
+<h4>Status of ticket: {{ticket.status}}</h4>

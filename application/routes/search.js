@@ -9,6 +9,12 @@ const database = require('../config/database');
 
 const router = express.Router();
 
+/**
+ * This function is used for the search page to show search results
+ * @param req The request sent to the server from the browser
+ * @param res The response sent to the browser from the server
+ * @param next Finish response
+ */
 function search(req, res, next) {
   // Read values from user input from front end
   const searchTerm = req.body.searchTerm;
@@ -21,6 +27,7 @@ function search(req, res, next) {
       'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
+      'ticket.id, ' +
       'ticket.status, ' +
       'ticket.description, ' +
       'ticket.rating, ' +
@@ -82,10 +89,73 @@ function search(req, res, next) {
   });
 }
 
+/**
+ * This function is used for ticket details pages when clicking on more details
+ * @param req The request sent to the server from the browser
+ * @param res The response sent to the browser from the server
+ * @param next Finish response
+ */
+function ticketDetails(req, res, next) {
+  let ticketId = req.params.id;
+
+  // Get all information about the ticket by ticket id (it will return only one result)
+  let sqlQuery =
+    'SELECT ' +
+      'image.imagePath, ' +
+      'issue.issueName, ' +
+      'location.locationName, ' +
+      'ticket.id, ' +
+      'ticket.status, ' +
+      'ticket.description, ' +
+      'ticket.rating, ' +
+      'ticket.time, ' +
+      'user.userName ' +
+    'FROM ticket ' +
+      'LEFT JOIN image ' +
+        'ON (ticket.image_id = image.id) ' +
+      'LEFT JOIN issue ' +
+        'ON (ticket.issue_id = issue.id) ' +
+      'LEFT JOIN location ' +
+        'ON (ticket.location_id = location.id) ' +
+      'LEFT JOIN user ' +
+        'ON (ticket.user_id = user.id) ' +
+    'WHERE ticket.id = ' + ticketId;
+
+  // Preview ticket id and sql query in console
+  console.log(`Getting ticket id: ${ticketId}`);
+  console.log(sqlQuery);
+
+  // Get ticket from MySQL database table where ticket id is the ticket that the user clicked on
+  database.query(sqlQuery, (err, result) => {
+    if (err) {
+      req.ticketResult = '';
+      console.log(err);
+      next();
+    }
+
+    // Since we are viewing details of one ticket, we only need the one and only result from the sql query
+    req.ticketResult = result[0];
+
+    // Log result to console (JSON format)
+    console.log(result[0]);
+
+    next();
+  });
+}
+
 // Routes search.hbs page to /search
 router.get('/', (req, res, next) => {
   res.render('search', {
     title: 'Search Database'
+  });
+});
+
+// Routes details page of each ticket with id to /search/details/id
+router.get('/details/:id', ticketDetails, (req, res, next) => {
+  // Render new details page for the ticket
+  res.render('details', {
+    title: `Details for ticket id: ${req.params.id}`,
+    ticket: req.ticketResult    // This should not be null if the page is accessed via more details
   });
 });
 

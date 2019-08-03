@@ -24,14 +24,14 @@
             {{#if this.imagePath}}
               http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{this.imagePath}}
             {{else}}
-              uploads/noimage.png
+              http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
             {{/if}}" target="_blank">
             <!-- The image itself -->
             <img src="
             {{#if this.imagePath}}
               http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{this.imagePath}}
             {{else}}
-              uploads/noimage.png
+              http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
             {{/if}}" alt="Error loading image" class="img-fluid">
           </a>
         </td>
@@ -59,7 +59,8 @@
               </tr>
               </tbody>
             </table>
-            <a href="#" target="_blank"><h5>More Details</h5></a>
+            <!-- Link to details page of the ticket -->
+            <a href="/search/details/{{this.id}}" target="_blank"><h5>More Details</h5></a>
           </div>
         </td>
 
