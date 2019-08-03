@@ -12,3 +12,11 @@ WILL OVERRIDE CSS FROM BOOTSTRAP
 body {
 
 }
+
+/*
+  Required form fields validation
+ */
+.form-group.required .control-label:after {
+  color: #D00000;
+  content: " *";
+}
