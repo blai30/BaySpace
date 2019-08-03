@@ -4,6 +4,7 @@
  */
 
 const express = require('express');
+const { check, validationResult } = require('express-validator');
 const database = require('../config/database');
 
 const router = express.Router();
@@ -89,15 +90,30 @@ router.get('/', (req, res, next) => {
 });
 
 // When user clicks search button, post is called
-router.post('/', search, (req, res, next) => {
+router.post('/', [
+  // Validate search field to be max 50 characters
+  check('searchTerm', 'Search term must be 50 characters or less.')
+    .isLength({
+      max: 50
+    }),
+
+  // The search function that was defined in this file
+  search
+], (req, res, next) => {
   let searchResult = req.searchResult;
+
+  // Pass any validation errors to front-end, in this case search term <=50 characters
+  let errors = validationResult(req);
+
   // The values are passed to search.hbs
   res.render('search', {
     title: 'Search Database',
     searchTerm: req.body.searchTerm,  // Persist search query
     numResults: searchResult.length,
     results: searchResult,            // Pass results to front end
-    msg: (searchResult.length <= 0) ? 'No results found.' : ''  // Display message when no results
+    msg: (searchResult.length <= 0) ? 'No results found.' : '',   // Display message when no results
+
+    errors: errors.array()  // Validation errors will be shown if there are any
   });
 });
 

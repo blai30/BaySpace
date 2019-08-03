@@ -11,6 +11,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
+// Initialize the app itself with express
 const app = express();
 
 // Routers
@@ -26,14 +27,17 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Initialize passport, used for login and registration
 app.use(passport.initialize());
 
+// Flash requires an express session to work
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
   resave: true
 }));
 
+// Initialize flash to view global messages
 app.use(flash());
 
 // Initialize global variables

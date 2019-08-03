@@ -37,28 +37,28 @@ router.post('/register', [
     }),
 
   // Check last name length
-  check('lastName', 'Last name is required to be 2-40 characters')
+  check('lastName', 'Last name is required to be 2-40 characters.')
     .isLength({
       min: 2,
       max: 40
     }),
 
   // Check username length
-  check('userName', 'Username is required to be 2-40 characters')
+  check('userName', 'Username is required to be 2-40 characters.')
     .isLength({
       min: 2,
       max: 40
     }),
 
   // Check valid email
-  check('email', 'Email is invalid')
+  check('email', 'Email is invalid.')
     .isLength({
       min: 4
     })
     .isEmail(),
 
   // Check password length and match
-  check('password', 'Password is required to be 4-40 characters')
+  check('password', 'Password is required to be 4-40 characters.')
     .isLength({
       min: 4,
       max: 40
@@ -66,7 +66,7 @@ router.post('/register', [
     .custom((value,{req, loc, path}) => {
       if (value !== req.body.password2) {
         // trow error if passwords do not match
-        throw new Error("Passwords don't match");
+        throw new Error("Passwords don't match.");
       } else {
         return value;
       }
