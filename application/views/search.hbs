@@ -1,58 +1,7 @@
-<!-- Front-end body for search page -->
+<!-- Front-end body for search results page -->
+<!-- This page is accessed by submitting the search form at the top of the site in the navbar -->
 
-<h1>Search for environmental hazards in local parks</h1>
-
-<form class="form-inline" method="post" action="/search">
-  <input id="searchTerm" class="form-control" type="search" name="searchTerm" value="{{searchTerm}}" placeholder="Search issue, location, or description">
-
-  <select id="issuesCategory" name="issuesCategory" class="form-control">
-    <option value="">All Issues</option>
-    <option value="Combustion Gas">Combustion Gas</option>
-    <option value="Cosmic Rays">Cosmic Rays</option>
-    <option value="Ebola">Ebola</option>
-    <option value="Extreme Winds">Extreme Winds</option>
-    <option value="Fallen Trees">Fallen Trees</option>
-    <option value="Fire">Fire</option>
-    <option value="Flood">Flood</option>
-    <option value="Heavy Snowfall">Heavy Snowfall</option>
-    <option value="High UV Index">High UV Index</option>
-    <option value="Nuclear Waste">Nuclear Waste</option>
-    <option value="Oil Spill">Oil Spill</option>
-    <option value="Pollen">Pollen</option>
-    <option value="Pollution">Pollution</option>
-    <option value="Rabies">Rabies</option>
-    <option value="Thunderstorms">Thunderstorms</option>
-    <option value="Tobacco">Tobacco</option>
-    <option value="Toxic Waste">Toxic Waste</option>
-  </select>
-
-  <select id="locationsCategory" name="locationsCategory" class="form-control">
-    <option value="">All Locations</option>
-    <option value="Alcatraz Island">Alcatraz Island</option>
-    <option value="Angel Island">Angel Island</option>
-    <option value="Aquatic Park">Aquatic Park</option>
-    <option value="AT&T Park">AT&T Park</option>
-    <option value="Balboa Park">Balboa Park</option>
-    <option value="China Beach">China Beach</option>
-    <option value="Fort Funston">Fort Funston</option>
-    <option value="Fort Mason">Fort Mason</option>
-    <option value="Fort Miley">Fort Miley</option>
-    <option value="Glen Canyon Park">Glen Canyon Park</option>
-    <option value="Golden Gate Park">Golden Gate Park</option>
-    <option value="Japanese Tea Garden">Japanese Tea Garden</option>
-    <option value="Lake Merced">Lake Merced</option>
-    <option value="Lands End">Lands End</option>
-    <option value="Mount Sutro Forest">Mount Sutro Forest</option>
-    <option value="Muir Woods">Muir Woods</option>
-    <option value="Ocean Beach">Ocean Beach</option>
-    <option value="South Park">South Park</option>
-    <option value="The Presidio">The Presidio</option>
-    <option value="Twin Peaks">Twin Peaks</option>
-    <option value="Union Square">Union Square</option>
-  </select>
-
-  <button id="searchButton" class="btn btn-success" name="searchButton" type="submit">Search</button>
-</form>
+<h1>Search results</h1>
 
 <div class="table-responsive-md">
   <table class="table table-sm table-hover">
@@ -70,12 +19,21 @@
       <tr>
         <!-- Image -->
         <td style="width: 16.5%;">
-          <img src="
-          {{#if this.imagePath}}
-            http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{this.imagePath}}
-          {{else}}
-            uploads/noimage.png
-          {{/if}}" alt="Error loading image" class="img-fluid">
+          <!-- Clickable image takes user to the image in new tab -->
+          <a href="
+            {{#if this.imagePath}}
+              http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{this.imagePath}}
+            {{else}}
+              uploads/noimage.png
+            {{/if}}" target="_blank">
+            <!-- The image itself -->
+            <img src="
+            {{#if this.imagePath}}
+              http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{this.imagePath}}
+            {{else}}
+              uploads/noimage.png
+            {{/if}}" alt="Error loading image" class="img-fluid">
+          </a>
         </td>
 
         <!-- Details -->
@@ -101,6 +59,7 @@
               </tr>
               </tbody>
             </table>
+            <a href="#" target="_blank"><h5>More Details</h5></a>
           </div>
         </td>
 
@@ -127,4 +86,16 @@
   </table>
 </div>
 
-{{msg}}
+<!-- Print any messages that is passed in from back-end such as "No results found" -->
+<h4>
+  {{#if msg}}
+    {{msg}}
+  {{else}}
+    <!-- Print number of results or if no search query was submitted, prompt user to enter search -->
+    {{#if numResults}}
+      Showing {{numResults}} results
+    {{else}}
+      Please enter search term and/or search categories
+    {{/if}}
+  {{/if}}
+</h4>

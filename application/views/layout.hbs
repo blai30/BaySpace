@@ -48,23 +48,80 @@
       <div id="page-content-wrapper">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-          <button class="btn btn-primary" id="menu-toggle">Toggle Sidebar</button>
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+          <!-- Search form for searching tickets -->
+          <form class="form-inline" method="post" action="/search">
+            <!-- Search bar input field -->
+            <div class="form-group">
+              <label class="control-label" for="searchTerm">Search issues in local parks</label>
+              <input id="searchTerm" class="form-control" type="search" name="searchTerm" value="{{searchTerm}}" placeholder="Search issue, location, or description">
+            </div>
+
+            <!-- Filter by issue category -->
+            <div class="form-group">
+              <select id="issuesCategory" name="issuesCategory" class="form-control">
+                <option value="">All Issues</option>
+                <option value="Combustion Gas">Combustion Gas</option>
+                <option value="Cosmic Rays">Cosmic Rays</option>
+                <option value="Ebola">Ebola</option>
+                <option value="Extreme Winds">Extreme Winds</option>
+                <option value="Fallen Trees">Fallen Trees</option>
+                <option value="Fire">Fire</option>
+                <option value="Flood">Flood</option>
+                <option value="Heavy Snowfall">Heavy Snowfall</option>
+                <option value="High UV Index">High UV Index</option>
+                <option value="Nuclear Waste">Nuclear Waste</option>
+                <option value="Oil Spill">Oil Spill</option>
+                <option value="Pollen">Pollen</option>
+                <option value="Pollution">Pollution</option>
+                <option value="Rabies">Rabies</option>
+                <option value="Thunderstorms">Thunderstorms</option>
+                <option value="Tobacco">Tobacco</option>
+                <option value="Toxic Waste">Toxic Waste</option>
+              </select>
+            </div>
+
+            <!-- Filter by location category -->
+            <div class="form-group">
+              <select id="locationsCategory" name="locationsCategory" class="form-control">
+                <option value="">All Locations</option>
+                <option value="Alcatraz Island">Alcatraz Island</option>
+                <option value="Angel Island">Angel Island</option>
+                <option value="Aquatic Park">Aquatic Park</option>
+                <option value="AT&T Park">AT&T Park</option>
+                <option value="Balboa Park">Balboa Park</option>
+                <option value="China Beach">China Beach</option>
+                <option value="Fort Funston">Fort Funston</option>
+                <option value="Fort Mason">Fort Mason</option>
+                <option value="Fort Miley">Fort Miley</option>
+                <option value="Glen Canyon Park">Glen Canyon Park</option>
+                <option value="Golden Gate Park">Golden Gate Park</option>
+                <option value="Japanese Tea Garden">Japanese Tea Garden</option>
+                <option value="Lake Merced">Lake Merced</option>
+                <option value="Lands End">Lands End</option>
+                <option value="Mount Sutro Forest">Mount Sutro Forest</option>
+                <option value="Muir Woods">Muir Woods</option>
+                <option value="Ocean Beach">Ocean Beach</option>
+                <option value="South Park">South Park</option>
+                <option value="The Presidio">The Presidio</option>
+                <option value="Twin Peaks">Twin Peaks</option>
+                <option value="Union Square">Union Square</option>
+              </select>
+            </div>
+
+            <!-- Button to submit search query -->
             <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
-          </div>
+              <button id="searchButton" class="btn btn-success" name="searchButton" type="submit">Search</button>
+            </span>
+          </form>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">Post</a>
+                <a class="nav-link" href="/tickets">Post</a>
               </li>
 
               <!-- If user is signed in -->
