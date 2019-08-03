@@ -1,41 +1,98 @@
 <!-- Registration form -->
-<form method="post" action="/users/register">
-  <div class="form-group">
-    <label for="inputFirst">First Name</label>
-    <input type="text" class="form-control" id="inputFirst" name="firstName" value="{{firstName}}" placeholder="First Name">
-  </div>
-  <div class="form-group">
-    <label for="inputLast">Last Name</label>
-    <input type="text" class="form-control" id="inputLast" name="lastName" value="{{lastName}}" placeholder="Last Name">
-  </div>
-  <div class="form-group">
-    <label for="inputUser">Username</label>
-    <input type="text" class="form-control" id="inputUser" name="userName" value="{{userName}}" placeholder="Username">
-  </div>
-  <div class="form-group">
-    <label for="inputEmail">Email address</label>
-    <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" value="{{email}}" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword">Password</label>
-    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="inputPassword">Confirm Password</label>
-    <input type="password" class="form-control" id="inputPassword" name="password2" placeholder="Confirm Password">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="check" name="terms">
-    <label class="form-check-label" for="check">I agree to the Terms of Service and Privacy Policy.</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign Up</button>
-</form>
+<!-- Users will fill out and submit this form to register for an account -->
 
-{{#if errors}}
-  {{#each errors}}
-    <div class="alert alert-danger">
-      Error: {{this.msg}}
+<!-- Inform the user that required fields are marked with a red '*' -->
+<div class="h5 mb-4">
+  <label style="color: red;">*</label> indicates required fields
+</div>
+
+<!-- Registration form -->
+<form class="form needs-validation" novalidate method="post" action="/users/register">
+
+  <!-- First name -->
+  <div class="form-group required">
+    <label class="control-label" for="inputFirst">First Name</label>
+    <input type="text" class="form-control" id="inputFirst" name="firstName" value="{{firstName}}" placeholder="First Name" required>
+
+    <div class="valid-feedback">
+      Looks good!
     </div>
-  {{/each}}
-{{/if}}
+    <div class="invalid-feedback">
+      Please enter your first name.
+    </div>
+  </div>
+
+  <!-- Last name -->
+  <div class="form-group required">
+    <label class="control-label" for="inputLast">Last Name</label>
+    <input type="text" class="form-control" id="inputLast" name="lastName" value="{{lastName}}" placeholder="Last Name" required>
+
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please enter your last name.
+    </div>
+  </div>
+
+  <!-- Username must be unique -->
+  <div class="form-group required">
+    <label class="control-label" for="inputUser">Username</label>
+    <input type="text" class="form-control" id="inputUser" name="userName" value="{{userName}}" placeholder="Username" required>
+
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please enter a username name.
+    </div>
+  </div>
+
+  <!-- Email address field must follow email address format test@example.com, must be unique, used to login -->
+  <div class="form-group required">
+    <label class="control-label" for="inputEmail">Email address</label>
+    <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp" value="{{email}}" placeholder="Enter email" required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please enter your email address.
+    </div>
+  </div>
+
+  <!-- Password field, obscured text and must match confirm password field -->
+  <div class="form-group required">
+    <label class="control-label" for="inputPassword">Password</label>
+    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
+
+    <div class="invalid-feedback">
+      Please enter a password.
+    </div>
+  </div>
+
+  <!-- Confirm password, must match first password field -->
+  <div class="form-group required">
+    <label class="control-label" for="inputPassword">Confirm Password</label>
+    <input type="password" class="form-control" id="inputPassword" name="password2" placeholder="Confirm Password" required>
+
+    <div class="invalid-feedback">
+      Please confirm your password.
+    </div>
+  </div>
+
+  <!-- Agree to the terms of service and privacy policy -->
+  <div class="form-group form-check required">
+    <input type="checkbox" class="form-check-input" id="check" name="terms" required>
+    <label class="control-label form-check-label" for="check">I agree to the Terms of Service and Privacy Policy.</label>
+
+    <div class="invalid-feedback">
+      You must agree before submitting.
+    </div>
+  </div>
+
+  <!-- Submit registration form -->
+  <button type="submit" class="btn btn-primary">Sign Up</button>
+
+</form>

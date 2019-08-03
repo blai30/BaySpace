@@ -1,17 +1,49 @@
 <!-- Sign In form -->
-<form method="post" action="/users/signin">
-  <div class="form-group">
-    <label for="inputEmail">Email address</label>
-    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+<!-- Users will fill out and submit this form to sign into the site -->
+<!-- This is required when the user wants to post a ticket -->
+
+<!-- Inform the user that required fields are marked with a red '*' -->
+<div class="h5 mb-4">
+  <label style="color: red;">*</label> indicates required fields
+</div>
+
+<!-- Sign in form -->
+<form class="form needs-validation" novalidate method="post" action="/users/signin">
+
+  <!-- Email address -->
+  <div class="form-group required">
+    <label class="control-label" for="inputEmail">Email address</label>
+    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please enter your email address.
+    </div>
   </div>
-  <div class="form-group">
-    <label for="inputPassword">Password</label>
-    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+
+  <!-- Password -->
+  <div class="form-group required">
+    <label class="control-label" for="inputPassword">Password</label>
+    <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please enter your password.
+    </div>
   </div>
+
+  <!-- Remember me -->
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="check">
     <label class="form-check-label" for="check">Remember me</label>
   </div>
+
+  <!-- Submit form and sign in -->
   <button type="submit" class="btn btn-primary">Sign In</button>
+
 </form>
