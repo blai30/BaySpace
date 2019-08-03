@@ -1,3 +1,8 @@
+/*
+  about.js
+  This is the back-end of the about page for the app.
+ */
+
 const express = require('express');
 
 const router = express.Router();

@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+/*
+  index.js
+  This file is the entry point to the application. When running with node, this file initializes server back-end with a port and listens on it.
+ */
+
 /**
  * Module dependencies.
  */

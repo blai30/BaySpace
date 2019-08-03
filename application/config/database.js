@@ -1,3 +1,8 @@
+/*
+  database.js
+  This file connects the app to the remote MySQL database using the mysql node library. The environment variables are used in development for testing.
+ */
+
 const mysql = require('mysql');
 
 // Connect to database
