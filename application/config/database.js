@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === 'dev') {
   });
 }
 
-// Connect to database
+// Create connection configs for MySQL database
 const database = mysql.createConnection({
   // !!! IMPORTANT !!!
   // RUN 'npm run dev' TO TEST ON LOCAL DEVELOPMENT MACHINE
@@ -57,11 +57,12 @@ const database = mysql.createConnection({
   timezone: 'US/Pacific'
 });
 
+// Connect to MySQL database using above configs
 database.connect((err) => {
   if (err) {
     throw err;
   }
-  console.log(`Connected to MySQL database: ${database.host}:${database}`);
+  console.log(`Connected to MySQL database`);
 });
 
 module.exports = database;
