@@ -13,12 +13,12 @@ const sshTunnel = require('tunnel-ssh');
 const path = require('path');
 const fs = require('fs');
 
-// Private SSH key file that is located in /csc648-su19-Team05/credentials/csc648.pem
-const privateKeyPath = path.join(__dirname, '../../credentials/csc648Summer.pem');
-const privateKeyFile = fs.readFileSync(privateKeyPath);
-
 // This will only run when 'npm run dev' is used; This should be used when testing on local machine in development, DO NOT USE THIS WHEN RUNNING ON THE AWS SERVER
 if (process.env.NODE_ENV === 'dev') {
+  // Private SSH key file that is located in /csc648-su19-Team05/credentials/csc648.pem
+  const privateKeyPath = path.join(__dirname, '../../credentials/csc648Summer.pem');
+  const privateKeyFile = fs.readFileSync(privateKeyPath);
+
   const sshTunnelConfig = {
     username: 'ubuntu',           // User in remote AWS server; no password
     privateKey: privateKeyFile,   // Private SSH key used to SSH to remote server
