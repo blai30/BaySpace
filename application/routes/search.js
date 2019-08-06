@@ -41,7 +41,8 @@ function search(req, res, next) {
       'LEFT JOIN location ' +
         'ON (ticket.location_id = location.id) ' +
       'LEFT JOIN user ' +
-        'ON (ticket.user_id = user.id) ';
+        'ON (ticket.user_id = user.id) ' +
+    'ORDER BY ticket.time DESC';
 
   // If a search term is entered, add additional filters based on user input from front end
   if (searchTerm !== '') {
