@@ -6,9 +6,9 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-const request = require('request');
 
 const database = require('../config/database');
+const recaptcha = require('../controllers/recaptcha');
 
 const router = express.Router();
 
@@ -28,7 +28,9 @@ router.get('/register', (req, res, next) => {
 
 // Submitted registration form sends POST request
 router.post('/register', [
-  // Validation
+  /*
+    FIELD VALIDATION OPTIONS
+   */
 
   // Check first name length
   check('firstName', 'First name is required to be 2-40 characters.')
@@ -72,7 +74,11 @@ router.post('/register', [
         return value;
       }
     })
-], (req, res, next) => {
+], recaptcha, (req, res, next) => {   // recaptcha function is called as a handler here
+  /*
+    FIELD VALIDATION
+   */
+
   // Grab the input fields and store them in variables
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -103,33 +109,6 @@ router.post('/register', [
       errors: errors.array()
     });
   } else {
-    /*
-      VERIFY GOOGLE RECAPTCHA REQUEST
-     */
-
-    // Google reCAPTCHA secret key
-    let secretKey = '6LemrbEUAAAAAPfWOtagix9eeZpYi5l3n20Wv8Or';
-
-    // req.connection.remoteAddress will provide IP address of connected user.
-    let verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body['g-recaptcha-response']}&remoteip=${req.connection.remoteAddress}`;
-
-    // Hitting GET request to the URL, Google will respond with success or error scenario.
-    request(verificationUrl, (error, response, body) => {
-      body = JSON.parse(body);
-      console.log(response);
-      // Success will be true or false depending upon captcha validation.
-      if ((body.success !== undefined) && !body.success) {
-        return res.json({
-          "responseCode" : 1,
-          "responseDesc" : "Failed captcha verification"
-        });
-      }
-      res.json({
-        "responseCode" : 0,
-        "responseDesc" : "Success"
-      });
-    });
-
     /*
       CREATING NEW USER ACCOUNT AND ADDING TO DATABASE
      */
