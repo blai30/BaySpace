@@ -20,3 +20,17 @@ body {
   color: #D00000;
   content: " *";
 }
+
+/*
+  Used for reCAPTCHA validation message
+ */
+.red {
+  color: #cc0000;
+}
+
+/*
+  Used for reCAPTCHA validation message
+ */
+.green {
+  color: #009b27;
+}
