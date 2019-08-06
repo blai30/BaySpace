@@ -6,6 +6,7 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const request = require('request');
 
 const database = require('../config/database');
 
@@ -102,6 +103,33 @@ router.post('/register', [
       errors: errors.array()
     });
   } else {
+    /*
+      VERIFY GOOGLE RECAPTCHA REQUEST
+     */
+
+    // Google reCAPTCHA secret key
+    let secretKey = '6LemrbEUAAAAAPfWOtagix9eeZpYi5l3n20Wv8Or';
+
+    // req.connection.remoteAddress will provide IP address of connected user.
+    let verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body['g-recaptcha-response']}&remoteip=${req.connection.remoteAddress}`;
+
+    // Hitting GET request to the URL, Google will respond with success or error scenario.
+    request(verificationUrl, (error, response, body) => {
+      body = JSON.parse(body);
+      console.log(response);
+      // Success will be true or false depending upon captcha validation.
+      if ((body.success !== undefined) && !body.success) {
+        return res.json({
+          "responseCode" : 1,
+          "responseDesc" : "Failed captcha verification"
+        });
+      }
+      res.json({
+        "responseCode" : 0,
+        "responseDesc" : "Success"
+      });
+    });
+
     /*
       CREATING NEW USER ACCOUNT AND ADDING TO DATABASE
      */
