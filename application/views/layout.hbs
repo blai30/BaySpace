@@ -30,16 +30,14 @@
 
       <!-- Sidebar -->
       <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">BaySpace</div>
+        <div class="sidebar-heading">Menu</div>
         <div class="list-group list-group-flush">
           <a href="/" class="list-group-item list-group-item-action bg-light">Home</a>
-          <a href="/search" class="list-group-item list-group-item-action bg-light">Search</a>
-          <a href="/tickets" class="list-group-item list-group-item-action bg-light">Tickets</a>
-          <a href="/about" class="list-group-item list-group-item-action bg-light">About</a>
           <a href="#" class="list-group-item list-group-item-action bg-light">Recent Posts</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Park List</a>
+          <a href="/" class="list-group-item list-group-item-action bg-light">Park List</a>
           <a href="#" class="list-group-item list-group-item-action bg-light">Park Events</a>
           <a href="#" class="list-group-item list-group-item-action bg-light">Map</a>
+          <a href="/about" class="list-group-item list-group-item-action bg-light">About</a>
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -47,21 +45,28 @@
       <!-- Page Content -->
       <div id="page-content-wrapper">
 
+        <!-- Fine text to indicate that this app is for educational purposes and not commercial -->
+        <div class="alert alert-info mb-0" role="alert">
+          Software Engineering class SFSU Summer 2019 | Team 05
+        </div>
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+          <button class="btn btn-primary" id="menu-toggle">BaySpace</button>
+
+          <!-- Navbar toggle for mobile devices -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <!-- Search form for searching tickets -->
-          <form class="form-inline" method="post" action="/search">
+          <form class="form-row align-items-center ml-4" method="post" action="/search">
             <!-- Search bar input field -->
-            <div class="form-group">
-              <label class="control-label" for="searchTerm">Search issues in local parks</label>
-              <input id="searchTerm" class="form-control" type="search" name="searchTerm" value="{{searchTerm}}" placeholder="Search issue, location, or description">
+            <div class="col-auto form-group">
+              <input id="searchTerm" class="form-control" type="search" name="searchTerm" value="{{searchTerm}}" placeholder="Search for an incident...">
             </div>
 
             <!-- Filter by issue category -->
-            <div class="form-group">
+            <div class="col-auto form-group">
               <select id="issuesCategory" name="issuesCategory" class="form-control">
                 <option value="">All Issues</option>
                 <option value="Combustion Gas">Combustion Gas</option>
@@ -85,7 +90,7 @@
             </div>
 
             <!-- Filter by location category -->
-            <div class="form-group">
+            <div class="col-auto form-group">
               <select id="locationsCategory" name="locationsCategory" class="form-control">
                 <option value="">All Locations</option>
                 <option value="Alcatraz Island">Alcatraz Island</option>
@@ -113,15 +118,17 @@
             </div>
 
             <!-- Button to submit search query -->
-            <span class="input-group-btn">
-              <button id="searchButton" class="btn btn-success" name="searchButton" type="submit">Search</button>
-            </span>
+            <div class="col-auto form-group">
+              <span class="input-group-btn">
+                <button id="searchButton" class="btn btn-success" name="searchButton" type="submit">Search</button>
+              </span>
+            </div>
           </form>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="/tickets">Post</a>
+                <a class="nav-link" href="/post">Post</a>
               </li>
 
               <!-- If user is signed in -->
