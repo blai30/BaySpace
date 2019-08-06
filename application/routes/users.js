@@ -68,7 +68,7 @@ router.post('/register', [
     })
     .custom((value,{req, loc, path}) => {
       if (value !== req.body.password2) {
-        // trow error if passwords do not match
+        // Throw error if passwords do not match
         throw new Error("Passwords don't match.");
       } else {
         return value;
