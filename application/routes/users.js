@@ -6,56 +6,11 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-const request = require('request');
 
 const database = require('../config/database');
+const recaptcha = require('../controllers/recaptcha');
 
 const router = express.Router();
-
-/**
- * Function to verify Google reCAPTCHA. This function is called as a handler in POST for /register router.
- * @param req The request sent to the server from the browser
- * @param res The response sent to the browser from the server
- * @param next Finish response
- */
-function verifyCaptcha(req, res, next) {
-  /*
-    VERIFY GOOGLE RECAPTCHA REQUEST
-   */
-
-  // Google reCAPTCHA secret key
-  let secretKey = '6LemrbEUAAAAAPfWOtagix9eeZpYi5l3n20Wv8Or';
-
-  // req.connection.remoteAddress will provide IP address of connected user
-  let verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body['g-recaptcha-response']}&remoteip=${req.connection.remoteAddress}`;
-
-  // Hitting GET request to the URL, Google will respond with success or error scenario
-  request(verificationUrl, (error, response, body) => {
-    if (error) {
-      throw error;
-    }
-
-    // Parse response
-    body = JSON.parse(body);
-    console.log(`Captcha verification response:`);
-    console.log(body);
-
-    // Success will be true or false depending upon captcha validation
-    if ((body.success !== undefined) && !body.success) {
-      // Error scenario
-      return res.json({
-        responseCode: 1,
-        responseDesc: 'Failed captcha verification'
-      });
-    }
-
-    // Success scenario
-    res.json({
-      responseCode: 0,
-      responseDesc: 'Success'
-    });
-  });
-}
 
 // Routes signin.hbs page to /users/signin
 router.get('/signin', (req, res, next) => {
@@ -119,7 +74,7 @@ router.post('/register', [
         return value;
       }
     })
-], verifyCaptcha, (req, res, next) => {
+], recaptcha, (req, res, next) => {   // recaptcha function is called as a handler here
   /*
     FIELD VALIDATION
    */
