@@ -9,6 +9,8 @@ const database = require('../config/database');
 
 const router = express.Router();
 
+const title = 'Search Database';
+
 /**
  * This function is used for the search page to show search results
  * @param req The request sent to the server from the browser
@@ -147,7 +149,7 @@ function ticketDetails(req, res, next) {
 // Routes search.hbs page to /search
 router.get('/', (req, res, next) => {
   res.render('search', {
-    title: 'Search Database'
+    title: title
   });
 });
 
@@ -178,7 +180,7 @@ router.post('/', [
 
   // The values are passed to search.hbs
   res.render('search', {
-    title: 'Search Database',
+    title: title,
     searchTerm: req.body.searchTerm,  // Persist search query
     numResults: searchResult.length,
     results: searchResult,            // Pass results to front end

@@ -10,10 +10,12 @@ const upload = require('../config/multer');
 
 const router = express.Router();
 
+const title = 'Post ticket';
+
 // Routes tickets.hbs page to /tickets
 router.get('/', (req, res, next) => {
   res.render('post', {
-    title: 'Post ticket'
+    title: title
   });
 });
 
