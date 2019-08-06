@@ -28,24 +28,61 @@
 <br>
 
 <!-- General information about the ticket -->
-<h4>Issue Name: {{ticket.issueName}}</h4>
-<h4>Location Name: {{ticket.locationName}}</h4>
-<h4>Rating: {{ticket.rating}}</h4>
-<h4>Description: {{ticket.description}}</h4>
+<table class="table table-sm table-hover table-borderless h4">
+  <tbody>
+    <!-- The type of issue -->
+    <tr>
+      <th scope="row" style="width: 20%;">Issue</th>
+      <th>{{ticket.issueName}}</th>
+    </tr>
+
+    <!-- Location at which the issue is taking place -->
+    <tr>
+      <th scope="row">Location</th>
+      <td>{{ticket.locationName}}</td>
+    </tr>
+
+    <!-- Level of danger rated for this issue -->
+    <tr>
+      <th scope="row">Rating</th>
+      <td>{{ticket.rating}}</td>
+    </tr>
+
+    <!-- Description of the ticket -->
+    <tr>
+      <th scope="row">Description</th>
+      <td>{{ticket.description}}</td>
+    </tr>
+  </tbody>
+</table>
 
 <br>
 
 <!-- Information on the ticket's submission -->
-<h4>Submitted by User:
-  {{#if ticket.userName}}
-    {{ticket.userName}}
-  {{else}}
-    anonymous
-  {{/if}}
-</h4>
-<h4>Submitted at time: {{ticket.time}}</h4>
+<table class="table table-sm table-hover table-borderless h4">
+  <tbody>
+    <!-- User who submitted this ticket -->
+    <tr>
+      <th scope="row" style="width: 20%;">Submitted by User</th>
+      <th>
+        {{#if ticket.userName}}
+          {{ticket.userName}}
+        {{else}}
+          anonymous
+        {{/if}}
+      </th>
+    </tr>
 
-<br>
+    <!-- Time at which this ticket was first submitted -->
+    <tr>
+      <th scope="row">Submitted at time</th>
+      <td>{{ticket.time}}</td>
+    </tr>
 
-<!-- The status of the ticket -->
-<h4>Status of ticket: {{ticket.status}}</h4>
+    <!-- The status of the ticket -->
+    <tr>
+      <th scope="row">Status of ticket</th>
+      <td>{{ticket.status}}</td>
+    </tr>
+  </tbody>
+</table>
