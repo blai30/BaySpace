@@ -1,3 +1,8 @@
+/*
+  app.js
+  This file sets up the server back-end with routes, view engine, static directories, and more. This file is NOT the entry point to the application. The entry point is index.js.
+ */
+
 const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
@@ -6,6 +11,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
+// Initialize the app itself with express
 const app = express();
 
 // Routers
@@ -13,7 +19,7 @@ const indexRouter = require('./routes/index');
 const aboutRouter = require('./routes/about');
 const usersRouter = require('./routes/users');
 const searchRouter = require('./routes/search');
-const ticketsRouter = require('./routes/tickets');
+const postRouter = require('./routes/post');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,14 +27,17 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Initialize passport, used for login and registration
 app.use(passport.initialize());
 
+// Flash requires an express session to work
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
   resave: true
 }));
 
+// Initialize flash to view global messages
 app.use(flash());
 
 // Initialize global variables
@@ -53,7 +62,7 @@ app.use('/', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/users', usersRouter);
 app.use('/search', searchRouter);
-app.use('/tickets', ticketsRouter);
+app.use('/post', postRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

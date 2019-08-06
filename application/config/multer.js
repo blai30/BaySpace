@@ -1,3 +1,8 @@
+/*
+  multer.js
+  This handles file uploads to the server.
+ */
+
 const path = require('path');
 const multer = require('multer');
 

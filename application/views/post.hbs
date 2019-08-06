@@ -1,0 +1,115 @@
+<!-- Add ticket form -->
+<!-- The value tags correspond to the id in the database tables -->
+<h1>Post a ticket by filling out this form</h1>
+
+<!-- Inform the user that required fields are marked with a red '*' -->
+<div class="h5 mb-4">
+  <label style="color: red;">*</label> indicates required fields
+</div>
+
+<form class="form needs-validation" novalidate method="post" action="/post" enctype="multipart/form-data">
+  <!-- Select issue type -->
+  <div class="form-group required">
+    <label class="control-label" for="issueName">Select issue type</label>
+    <select id="issueName" name="issue_id" class="form-control" required>
+      <option value="">Issue</option>
+      <option value="1">Combustion Gas</option>
+      <option value="2">Cosmic Rays</option>
+      <option value="3">Ebola</option>
+      <option value="4">Extreme Winds</option>
+      <option value="5">Fallen Trees</option>
+      <option value="6">Fire</option>
+      <option value="7">Flood</option>
+      <option value="8">Heavy Snowfall</option>
+      <option value="9">High UV Index</option>
+      <option value="10">Nuclear Waste</option>
+      <option value="11">Oil Spill</option>
+      <option value="12">Pollen</option>
+      <option value="13">Pollution</option>
+      <option value="14">Rabies</option>
+      <option value="15">Thunderstorms</option>
+      <option value="16">Tobacco</option>
+      <option value="17">Toxic Waste</option>
+    </select>
+
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please select an issue type.
+    </div>
+  </div>
+
+  <!-- Select location of issue -->
+  <div class="form-group required">
+    <label class="control-label" for="locationName">Select location of issue</label>
+    <select id="locationName" name="location_id" class="form-control" required>
+      <option value="">Location</option>
+      <option value="1">Alcatraz Island</option>
+      <option value="2">Angel Island</option>
+      <option value="3">Aquatic Park</option>
+      <option value="4">AT&T Park</option>
+      <option value="5">Balboa Park</option>
+      <option value="6">China Beach</option>
+      <option value="7">Fort Funston</option>
+      <option value="8">Fort Mason</option>
+      <option value="9">Fort Miley</option>
+      <option value="10">Glen Canyon Park</option>
+      <option value="11">Golden Gate Park</option>
+      <option value="12">Japanese Tea Garden</option>
+      <option value="13">Lake Merced</option>
+      <option value="14">Lands End</option>
+      <option value="15">Mount Sutro Forest</option>
+      <option value="16">Muir Woods</option>
+      <option value="17">Ocean Beach</option>
+      <option value="18">South Park</option>
+      <option value="19">The Presidio</option>
+      <option value="20">Twin Peaks</option>
+      <option value="21">Union Square</option>
+    </select>
+
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please select the location of the issue.
+    </div>
+  </div>
+
+  <!-- Enter optional description -->
+  <div class="form-group">
+    <label class="control-label" for="description">Briefly describe the issue</label>
+    <input id="description" class="form-control" type="text" name="description" placeholder="Description">
+  </div>
+
+  <!-- Enter level of danger for issue -->
+  <div class="form-group required">
+    <label class="control-label" for="rating">Rate the level of danger (1-least dangerous, 5-most dangerous)</label>
+    <select id="rating" name="rating" class="form-control" required>
+      <option value="">Rating</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please rate the level of danger for the issue.
+    </div>
+  </div>
+
+  <!-- Upload optional image. If no image is uploaded, a default one will be assigned -->
+  <div class="form-group">
+    <label class="control-label" for="image">Upload image</label>
+    <input id="image" class="form-control" type="file" name="uploadImage" accept="image/*" />
+  </div>
+
+  <!-- Button to submit form and add ticket -->
+  <div class="form-group">
+    <button id="addticket" class="form-control btn btn-success" name="addticket" type="submit">Add Ticket</button>
+  </div>
+</form>

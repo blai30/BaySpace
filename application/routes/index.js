@@ -1,3 +1,8 @@
+/*
+  index.js
+  This is the back-end of the home page for the app.
+ */
+
 const express = require('express');
 
 const router = express.Router();
