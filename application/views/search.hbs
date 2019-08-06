@@ -3,6 +3,21 @@
 
 <h1>Search results</h1>
 
+<!-- Print any messages that is passed in from back-end such as "No results found" -->
+<h4>
+  {{#if msg}}
+    {{msg}}
+  {{else}}
+    <!-- Print number of results or if no search query was submitted, prompt user to enter search -->
+    {{#if numResults}}
+      Showing <strong>{{numResults}}</strong> results
+    {{else}}
+      Please enter search term and/or search categories
+    {{/if}}
+  {{/if}}
+</h4>
+
+<!-- Show the table of search results -->
 <div class="table-responsive-md">
   <table class="table table-sm table-hover">
     <!-- Table categories -->
@@ -94,17 +109,3 @@
     </tbody>
   </table>
 </div>
-
-<!-- Print any messages that is passed in from back-end such as "No results found" -->
-<h4>
-  {{#if msg}}
-    {{msg}}
-  {{else}}
-    <!-- Print number of results or if no search query was submitted, prompt user to enter search -->
-    {{#if numResults}}
-      Showing {{numResults}} results
-    {{else}}
-      Please enter search term and/or search categories
-    {{/if}}
-  {{/if}}
-</h4>
