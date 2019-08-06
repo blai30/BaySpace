@@ -38,4 +38,30 @@ router.get('/', (req, res, next) => {
   });
 });
 
+router.get('/location/:urlRoute', (req, res, next) => {
+  // Store the route to this location in a variable
+  let urlRoute = req.params.urlRoute;
+
+  // Query the database for information on this specific location
+  database.query(`SELECT * FROM location WHERE urlRoute = '${urlRoute}'`, (err, result) => {
+    // Render page with no information if there is an error
+    if (err) {
+      res.render('location', {
+        title: `Park information: ${urlRoute}`
+      });
+      next();
+    }
+
+    // Preview this location's information in the console
+    console.log(result[0]);
+
+    // Render the page and pass information on this location to the front end
+    res.render('location', {
+      title: `Park information: ${urlRoute}`,
+      // We are taking index 0 because the database query will always return only one row so we can just take the first and only result
+      location: result[0]
+    });
+  });
+});
+
 module.exports = router;
