@@ -1,15 +1,18 @@
 <!-- Front page of web application -->
+<!-- This page lists all of the locations with a link to each location page that shows information on the location -->
 
-<h1>List of parks</h1>
+<h1>List of locations</h1>
 
 <div class="row">
 
+  <!-- Loop through every location in the database passed in from back-end and displays them all in the same fashion -->
   {{#each locations}}
     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
       <div class="card h-100">
         <a href="#"><img class="card-img-top" src="{{this.imagePath}}" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
+            <!-- Link to the location page -->
             <a href="/location/{{this.urlRoute}}">{{this.locationName}}</a>
           </h4>
         </div>
