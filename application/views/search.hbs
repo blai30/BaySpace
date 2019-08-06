@@ -40,30 +40,30 @@
         <td style="width: 50%;">
           <div class="table-responsive-md">
             <!-- General information about the ticket -->
-            <table class="table table-sm table-hover table-borderless h4">
+            <table class="table table-sm table-hover table-borderless">
               <tbody>
                 <!-- The type of issue -->
                 <tr>
                   <th scope="row" style="width: 20%;">Issue</th>
-                  <th>{{ticket.issueName}}</th>
+                  <th>{{this.issueName}}</th>
                 </tr>
 
                 <!-- Location at which the issue is taking place -->
                 <tr>
                   <th scope="row">Location</th>
-                  <td>{{ticket.locationName}}</td>
+                  <td>{{this.locationName}}</td>
                 </tr>
 
                 <!-- Level of danger rated for this issue -->
                 <tr>
                   <th scope="row">Rating</th>
-                  <td>{{ticket.rating}}</td>
+                  <td>{{this.rating}}</td>
                 </tr>
 
                 <!-- Description of the ticket -->
                 <tr>
                   <th scope="row">Description</th>
-                  <td>{{ticket.description}}</td>
+                  <td>{{this.description}}</td>
                 </tr>
               </tbody>
             </table>
