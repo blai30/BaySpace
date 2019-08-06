@@ -20,6 +20,9 @@
 
   <!-- CUSTOM CSS from /public/css/style.css -->
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+  <!-- Google Captcha -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -187,6 +190,20 @@
   <script src="/jquery/dist/jquery.min.js"></script>
   <script src="/popper/dist/popper.min.js"></script>
   <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- reCAPTCHA validation -->
+  <script>
+    document.getElementById("btn-validate").disabled = true;
+    $('.msg-error').addClass("red");
+    $('.msg-error').text("Please validate reCAPTCHA before submitting");
+
+    function enableSubmit() {
+      document.getElementById("btn-validate").disabled = false;
+      $('.msg-error').removeClass("red");
+      $('.msg-error').addClass("green");
+      $('.msg-error').text("Validation successful! Please submit form");
+    }
+  </script>
 
   <!-- Menu Toggle Script -->
   <script>

@@ -108,8 +108,12 @@
     <input id="image" class="form-control" type="file" name="uploadImage" accept="image/*" />
   </div>
 
+  <!-- Google reCAPTCHA -->
+  <div class="g-recaptcha" data-sitekey="6LemrbEUAAAAAKsukIYUdB51JoLh6coep6kHYy9u" data-callback="enableSubmit"></div>
+  <h2 class="msg-error"></h2>
+
   <!-- Button to submit form and add ticket -->
   <div class="form-group">
-    <button id="addticket" class="form-control btn btn-success" name="addticket" type="submit">Add Ticket</button>
+    <button id="btn-validate" class="form-control btn btn-success" name="addticket" type="submit">Add Ticket</button>
   </div>
 </form>
