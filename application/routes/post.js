@@ -5,10 +5,8 @@
 
 const express = require('express');
 const path = require('path');
-
 const database = require('../config/database');
 const upload = require('../config/multer');
-const recaptcha = require('../controllers/recaptcha');
 
 const router = express.Router();
 
@@ -22,10 +20,7 @@ router.get('/', (req, res, next) => {
 });
 
 // This is for adding items to database
-router.post('/', [
-  upload,
-  recaptcha
-] , (req, res, next) => {
+router.post('/', upload, (req, res, next) => {
   /*
     UPLOADING IMAGE TO SERVER AND ADDING IMAGE TO DATABASE
    */

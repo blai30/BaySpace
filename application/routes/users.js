@@ -8,7 +8,6 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 const database = require('../config/database');
-const recaptcha = require('../controllers/recaptcha');
 
 const router = express.Router();
 
@@ -28,9 +27,7 @@ router.get('/register', (req, res, next) => {
 
 // Submitted registration form sends POST request
 router.post('/register', [
-  /*
-    FIELD VALIDATION OPTIONS
-   */
+  // Validation
 
   // Check first name length
   check('firstName', 'First name is required to be 2-40 characters.')
@@ -74,11 +71,7 @@ router.post('/register', [
         return value;
       }
     })
-], recaptcha, (req, res, next) => {   // recaptcha function is called as a handler here
-  /*
-    FIELD VALIDATION
-   */
-
+], (req, res, next) => {
   // Grab the input fields and store them in variables
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
