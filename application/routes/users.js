@@ -15,23 +15,38 @@ const router = express.Router();
 
 // Routes signin.hbs page to /users/signin
 router.get('/signin', (req, res, next) => {
-  res.render('signin', {
-    title: 'Sign In'
-  });
+  if (req.isAuthenticated()) {
+    req.flash('error_msg', 'You are already signed in, sign out first before signing into a different account');
+    res.redirect('/');
+  } else {
+    res.render('signin', {
+      title: 'Sign In'
+    });
+  }
 });
 
 // Routes register.hbs page to /users/register
 router.get('/register', (req, res, next) => {
-  res.render('register', {
-    title: 'Register'
-  });
+  if (req.isAuthenticated()) {
+    req.flash('error_msg', 'You are already signed in, sign out first before registering for a new account');
+    res.redirect('/');
+  } else {
+    res.render('register', {
+      title: 'Register'
+    });
+  }
 });
 
 // Routes sign out link to sign the user out
 router.get('/signout', (req, res, next) => {
-  req.logout();
-  req.flash('success_msg', 'Successfully signed out');
-  res.redirect('/users/signin');
+  if (req.isAuthenticated()) {
+    req.logout();
+    req.flash('success_msg', 'Successfully signed out');
+    res.redirect('/users/signin');
+  } else {
+    req.flash('error_msg', 'Cannot sign out because you are not signed in');
+    res.redirect('/');
+  }
 });
 
 // Submitted sign in form sends POST request
