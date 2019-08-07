@@ -130,13 +130,12 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="/post">Post</a>
-              </li>
-
               <!-- If user is signed in -->
               {{#if user}}
-                <h4>Welcome, {{user}}!</h4>
+                <h5 class="align-self-center">Welcome, {{user.firstName}}!</h5>
+                <li class="nav-item">
+                  <a class="nav-link" href="/post">Post</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/users/signout">Sign out</a>
                 </li>

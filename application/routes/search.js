@@ -43,12 +43,11 @@ function search(req, res, next) {
       'LEFT JOIN location ' +
         'ON (ticket.location_id = location.id) ' +
       'LEFT JOIN user ' +
-        'ON (ticket.user_id = user.id) ' +
-    'ORDER BY ticket.time DESC';
+        'ON (ticket.user_id = user.id) ';
 
   // If a search term is entered, add additional filters based on user input from front end
   if (searchTerm !== '') {
-    sqlQuery += 'WHERE (issue.issueName LIKE ' + `'%${searchTerm}%' OR location.locationName LIKE ` + `'%${searchTerm}%' OR ticket.description LIKE ` + `'%${searchTerm}') `;
+    sqlQuery += 'WHERE (issue.issueName LIKE ' + `'%${searchTerm}%' OR location.locationName LIKE ` + `'%${searchTerm}%' OR ticket.description LIKE ` + `'%${searchTerm}%') `;
 
     if (issuesCategory !== '') {
       sqlQuery += `AND (issue.issueName = '${issuesCategory}') `;
@@ -71,6 +70,9 @@ function search(req, res, next) {
     }
   }
 
+  // Sort by time in descending order, this must be at the end of the query
+  sqlQuery += 'ORDER BY ticket.time DESC';
+
   // Preview query in console
   console.log(sqlQuery);
 
@@ -79,6 +81,7 @@ function search(req, res, next) {
     if (err) {
       req.searchResult = '';
       req.searchTerm = '';
+      console.log(err);
       next();
     }
 
@@ -169,7 +172,7 @@ router.post('/', [
     .isLength({
       max: 50
     })
-    .isAlphanumeric(),
+    .isAlphanumeric()
 ], search, (req, res, next) => {  // The search function that was defined above is passed as a handler
   let searchResult = req.searchResult;
 
