@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 });
 
 // Initialize upload module
-const upload = multer({
+module.exports = multer({
   // dest: 'uploads/',
   storage: storage,
   limits: {
@@ -26,4 +26,4 @@ const upload = multer({
   }
 }).single('uploadImage'); // This name comes from the input field for type="file" in tickets.hbs; name="uploadImage"
 
-module.exports = upload;  // Use this module by 'const upload = require('../multer');'
+// Use this module by 'const upload = require('../multer');'
