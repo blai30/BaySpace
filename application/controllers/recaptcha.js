@@ -12,7 +12,7 @@ const request = require('request');
  * @param res The response sent to the browser from the server
  * @param next Finish response
  */
-module.exports = function verifyCaptcha(req, res, next) {
+module.exports = (req, res, next) => {
   /*
     VERIFY GOOGLE RECAPTCHA REQUEST
    */
@@ -37,16 +37,12 @@ module.exports = function verifyCaptcha(req, res, next) {
     // Success will be true or false depending upon captcha validation
     if ((body.success !== undefined) && !body.success) {
       // Error scenario
-      return res.json({
-        responseCode: 1,
-        responseDesc: 'Failed captcha verification'
-      });
+      console.log('Error verifying Google reCAPTCHA');
     }
 
     // Success scenario
-    res.json({
-      responseCode: 0,
-      responseDesc: 'Success'
-    });
+    console.log('Successfully verified Google reCAPTCHA');
+
+    next();
   });
 };

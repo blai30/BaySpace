@@ -43,12 +43,11 @@ function search(req, res, next) {
       'LEFT JOIN location ' +
         'ON (ticket.location_id = location.id) ' +
       'LEFT JOIN user ' +
-        'ON (ticket.user_id = user.id) ' +
-    'ORDER BY ticket.time DESC';
+        'ON (ticket.user_id = user.id) ';
 
   // If a search term is entered, add additional filters based on user input from front end
   if (searchTerm !== '') {
-    sqlQuery += 'WHERE (issue.issueName LIKE ' + `'%${searchTerm}%' OR location.locationName LIKE ` + `'%${searchTerm}%' OR ticket.description LIKE ` + `'%${searchTerm}') `;
+    sqlQuery += 'WHERE (issue.issueName LIKE ' + `'%${searchTerm}%' OR location.locationName LIKE ` + `'%${searchTerm}%' OR ticket.description LIKE ` + `'%${searchTerm}%') `;
 
     if (issuesCategory !== '') {
       sqlQuery += `AND (issue.issueName = '${issuesCategory}') `;
@@ -71,6 +70,9 @@ function search(req, res, next) {
     }
   }
 
+  // Sort by time in descending order, this must be at the end of the query
+  sqlQuery += 'ORDER BY ticket.time DESC';
+
   // Preview query in console
   console.log(sqlQuery);
 
@@ -79,6 +81,7 @@ function search(req, res, next) {
     if (err) {
       req.searchResult = '';
       req.searchTerm = '';
+      console.log(err);
       next();
     }
 
@@ -164,15 +167,13 @@ router.get('/details/:id', ticketDetails, (req, res, next) => {
 
 // When user clicks search button, post is called
 router.post('/', [
-  // Validate search field to be max 50 characters
-  check('searchTerm', 'Search term must be 50 characters or less.')
+  // Validate search field to be max 50 alphanumeric characters
+  check('searchTerm', 'Search term must be 50 alphanumeric characters or less.')
     .isLength({
       max: 50
-    }),
-
-  // The search function that was defined in this file
-  search
-], (req, res, next) => {
+    })
+    .isAlphanumeric()
+], search, (req, res, next) => {  // The search function that was defined above is passed as a handler
   let searchResult = req.searchResult;
 
   // Pass any validation errors to front-end, in this case search term <=50 characters
