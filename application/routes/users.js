@@ -6,6 +6,7 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 const database = require('../config/database');
 const recaptcha = require('../controllers/recaptcha');
@@ -24,6 +25,34 @@ router.get('/register', (req, res, next) => {
   res.render('register', {
     title: 'Register'
   });
+});
+
+// Submitted sign in form sends POST request
+router.post('/signin', [
+  // Check valid email
+  check('email', 'Email is invalid.')
+    .isEmail(),
+
+  // Check email length
+  check('email', 'Email must be 4-80 characters.')
+    .isLength({
+      min: 4,
+      max: 80
+    }),
+
+  // Check password length and match
+  check('password', 'Password must be 4-40 characters.')
+    .isLength({
+      min: 4,
+      max: 40
+    })
+], passport.authenticate('local-signin', {
+  successRedirect: '/',
+  failureRedirect: '/users/signin',
+  failureFlash: true
+}), (req, res, next) => {
+  console.log(req);
+  next();
 });
 
 // Submitted registration form sends POST request
@@ -55,10 +84,14 @@ router.post('/register', [
 
   // Check valid email
   check('email', 'Email is invalid.')
-    .isLength({
-      min: 4
-    })
     .isEmail(),
+
+  // Check email length
+  check('email', 'Email must be 4-80 characters')
+    .isLength({
+      min: 4,
+      max: 80
+    }),
 
   // Check password length and match
   check('password', 'Password is required to be 4-40 characters.')

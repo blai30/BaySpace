@@ -164,15 +164,13 @@ router.get('/details/:id', ticketDetails, (req, res, next) => {
 
 // When user clicks search button, post is called
 router.post('/', [
-  // Validate search field to be max 50 characters
-  check('searchTerm', 'Search term must be 50 characters or less.')
+  // Validate search field to be max 50 alphanumeric characters
+  check('searchTerm', 'Search term must be 50 alphanumeric characters or less.')
     .isLength({
       max: 50
-    }),
-
-  // The search function that was defined in this file
-  search
-], (req, res, next) => {
+    })
+    .isAlphanumeric(),
+], search, (req, res, next) => {  // The search function that was defined above is passed as a handler
   let searchResult = req.searchResult;
 
   // Pass any validation errors to front-end, in this case search term <=50 characters

@@ -27,15 +27,17 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Initialize passport, used for login and registration
-app.use(passport.initialize());
-
 // Flash requires an express session to work
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
   resave: true
 }));
+
+// Initialize passport, used for login and registration
+require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Initialize flash to view global messages
 app.use(flash());
