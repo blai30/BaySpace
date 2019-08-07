@@ -4,7 +4,7 @@
  */
 
 const express = require('express');
-const { check, validationResult } = require('express-validator');
+const { body, check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
@@ -27,6 +27,13 @@ router.get('/register', (req, res, next) => {
   });
 });
 
+// Routes sign out link to sign the user out
+router.get('/signout', (req, res, next) => {
+  req.logout();
+  req.flash('success_msg', 'Successfully signed out');
+  res.redirect('/users/signin');
+});
+
 // Submitted sign in form sends POST request
 router.post('/signin', [
   // Check valid email
@@ -46,7 +53,7 @@ router.post('/signin', [
       min: 4,
       max: 40
     })
-], passport.authenticate('local-signin', {
+], passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/signin',
   failureFlash: true
@@ -82,6 +89,30 @@ router.post('/register', [
       max: 40
     }),
 
+  // Check if username is already registered in the system
+  check('userName')
+    .custom(userName => {
+      let sqlQuery = `SELECT * FROM user WHERE userName = '${userName}'`;
+      // Must use promise here when querying database because it may be slow
+      return new Promise((resolve, reject) => {
+        database.query(sqlQuery, (err, results) => {
+          if (err) {
+            console.log('Server error');
+          }
+
+          console.log(results);
+
+          // Reject if username already exists in database
+          if (results.length) {
+            reject(new Error('That username is already registered.'));
+          }
+
+          // Check passes if the username does not exist in database
+          resolve(true);
+        });
+      });
+    }),
+
   // Check valid email
   check('email', 'Email is invalid.')
     .isEmail(),
@@ -93,19 +124,42 @@ router.post('/register', [
       max: 80
     }),
 
+  // Check if email is already registered in the system
+  check('email')
+    .custom(email => {
+      let sqlQuery = `SELECT * FROM user WHERE email = '${email}'`;
+      // Must use promise here when querying database because it may be slow
+      return new Promise((resolve, reject) => {
+        database.query(sqlQuery, (err, results) => {
+          if (err) {
+            console.log('Server error');
+          }
+
+          console.log(results);
+
+          // Reject if email already exists in database
+          if (results.length) {
+            reject(new Error('That email is already registered.'));
+          }
+
+          // Check passes if the email does not exist in database
+          resolve(true);
+        });
+      });
+    }),
+
   // Check password length and match
   check('password', 'Password is required to be 4-40 characters.')
     .isLength({
       min: 4,
       max: 40
     })
-    .custom((value,{req, loc, path}) => {
+    .custom((value, {req}) => {
       if (value !== req.body.password2) {
         // Throw error if passwords do not match
-        throw new Error("Passwords don't match.");
-      } else {
-        return value;
+        throw new Error('Passwords do not match.');
       }
+      return true;
     })
 ], recaptcha, (req, res, next) => {   // recaptcha function is called as a handler here
   /*
@@ -118,7 +172,6 @@ router.post('/register', [
   const userName = req.body.userName;
   const email = req.body.email;
   const password = req.body.password;
-  const password2 = req.body.password2;
 
   // Handle errors
   let errors = validationResult(req);
