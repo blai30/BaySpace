@@ -90,7 +90,7 @@
           <!-- Print username of user who submitted ticket, or anonymous -->
           <h5>
             {{#if this.userName}}
-              <a href="/users/profile/{{this.userName}}" target="_blank">{{this.userName}}</a>
+              {{this.userName}}
             {{else}}
               <!-- Tickets with anonymous user should not appear -->
               anonymous
