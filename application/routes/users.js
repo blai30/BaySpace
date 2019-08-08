@@ -37,6 +37,60 @@ function userProfile(req, res ,next) {
     // Preview information on the user in console
     console.log(result[0]);
 
+
+
+    next();
+  });
+}
+
+/**
+ * This function is used for to get all tickets posted by this user to display on their profile page
+ * @param req The request sent to the server from the browser
+ * @param res The response sent to the browser from the server
+ * @param next Finish response
+ */
+function getUserTickets(req, res, next) {
+  // Get this user
+  let userName = req.params.userName;
+
+  // Query all tickets by this user
+  let sqlQuery =
+    'SELECT ' +
+      'image.imagePath, ' +
+      'issue.issueName, ' +
+      'location.locationName, ' +
+      'ticket.id, ' +
+      'ticket.status, ' +
+      'ticket.description, ' +
+      'ticket.rating, ' +
+      'ticket.time, ' +
+      'user.userName ' +
+    'FROM ticket ' +
+      'LEFT JOIN image ' +
+        'ON (ticket.image_id = image.id) ' +
+      'LEFT JOIN issue ' +
+        'ON (ticket.issue_id = issue.id) ' +
+      'LEFT JOIN location ' +
+        'ON (ticket.location_id = location.id) ' +
+      'LEFT JOIN user ' +
+        'ON (ticket.user_id = user.id) ' +
+    `WHERE user.userName = '${userName}' ` +
+    'ORDER BY ticket.time DESC ';
+
+  // All tickets by this user fetched
+  database.query(sqlQuery, (err, results) => {
+    if (err) {
+      req.userTickets = '';
+      console.log(err);
+      next();
+    }
+
+    // Store this user's tickets in request
+    req.userTickets = results;
+
+    // Print tickets to console
+    console.log(results);
+
     next();
   });
 }
@@ -78,10 +132,16 @@ router.get('/signout', (req, res, next) => {
 });
 
 // Routes profile page of each user with id to /users/profile/id
-router.get('/profile/:userName', userProfile, (req, res, next) => {
+router.get('/profile/:userName', [
+  // Call functions as handlers because they contain sql queries which may be slow
+  // Doing this prevents the page from loading before queries finish
+  userProfile,
+  getUserTickets
+], (req, res, next) => {
   res.render('profile', {
     title: `Profile for user: ${req.userResult.userName}`,
-    user: req.userResult
+    user: req.userResult,
+    tickets: req.userTickets    // Pass tickets to front end
   });
 });
 

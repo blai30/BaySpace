@@ -188,9 +188,9 @@ router.post('/', [
   // The values are passed to search.hbs
   res.render('search', {
     title: title,
-    searchTerm: req.body.searchTerm,  // Persist search query
+    searchTerm: req.body.searchTerm,      // Persist search query
     numResults: (errors.isEmpty()) ? searchResult.length : 0,
-    results: (errors.isEmpty()) ? searchResult : null,            // Pass results to front end
+    results: (errors.isEmpty()) ? searchResult : null,     // Pass results to front end
     msg: (searchResult.length <= 0 && errors.isEmpty()) ? 'No results found.' : '',   // Display message when no results
 
     errors: errors.array()  // Validation errors will be shown if there are any
