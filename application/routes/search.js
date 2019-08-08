@@ -167,25 +167,31 @@ router.get('/details/:id', ticketDetails, (req, res, next) => {
 
 // When user clicks search button, post is called
 router.post('/', [
-  // Validate search field to be max 50 alphanumeric characters
-  check('searchTerm', 'Search term must be 50 alphanumeric characters or less.')
+  // Validate search field to be max 50 characters
+  check('searchTerm', 'Search term must be 50 characters or less.')
     .isLength({
       max: 50
+    }),
+
+  // Validate search field to contain only alphanumeric characters
+  check('searchTerm', 'Search term must contain only alphanumeric characters.')
+    .optional({
+      checkFalsy: true
     })
-    .isAlphanumeric()
+    .isAlphanumeric(),
 ], search, (req, res, next) => {  // The search function that was defined above is passed as a handler
   let searchResult = req.searchResult;
 
-  // Pass any validation errors to front-end, in this case search term <=50 characters
+  // Pass any validation errors to front-end, in this case search term <=50 alphanumeric characters
   let errors = validationResult(req);
 
   // The values are passed to search.hbs
   res.render('search', {
     title: title,
     searchTerm: req.body.searchTerm,  // Persist search query
-    numResults: searchResult.length,
-    results: searchResult,            // Pass results to front end
-    msg: (searchResult.length <= 0) ? 'No results found.' : '',   // Display message when no results
+    numResults: (errors.isEmpty()) ? searchResult.length : 0,
+    results: (errors.isEmpty()) ? searchResult : null,            // Pass results to front end
+    msg: (searchResult.length <= 0 && errors.isEmpty()) ? 'No results found.' : '',   // Display message when no results
 
     errors: errors.array()  // Validation errors will be shown if there are any
   });
