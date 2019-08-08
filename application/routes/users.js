@@ -4,7 +4,7 @@
  */
 
 const express = require('express');
-const { body, check, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
@@ -12,6 +12,34 @@ const database = require('../config/database');
 const recaptcha = require('../controllers/recaptcha');
 
 const router = express.Router();
+
+/**
+ * This function is used for user profile pages when clicking on their name from search results
+ * @param req The request sent to the server from the browser
+ * @param res The response sent to the browser from the server
+ * @param next Finish response
+ */
+function userProfile(req, res ,next) {
+  let userName = req.params.userName;
+
+  // Get information about user
+  let sqlQuery = `SELECT * FROM user WHERE userName = '${userName}'`;
+  database.query(sqlQuery, (err, result) => {
+    if (err) {
+      req.userResult = '';
+      console.log(err);
+      next();
+    }
+
+    // We receive only one result which is the user by this username
+    req.userResult = result[0];
+
+    // Preview information on the user in console
+    console.log(result[0]);
+
+    next();
+  });
+}
 
 // Routes signin.hbs page to /users/signin
 router.get('/signin', (req, res, next) => {
@@ -47,6 +75,14 @@ router.get('/signout', (req, res, next) => {
     req.flash('error_msg', 'Cannot sign out because you are not signed in');
     res.redirect('/');
   }
+});
+
+// Routes profile page of each user with id to /users/profile/id
+router.get('/profile/:userName', userProfile, (req, res, next) => {
+  res.render('profile', {
+    title: `Profile for user: ${req.userResult.userName}`,
+    user: req.userResult
+  });
 });
 
 // Submitted sign in form sends POST request

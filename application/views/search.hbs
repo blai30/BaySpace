@@ -92,7 +92,7 @@
           <!-- Print username of user who submitted ticket, or anonymous -->
           <h5>
             {{#if this.userName}}
-              {{this.userName}}
+              <a href="/users/profile/{{this.userName}}">{{this.userName}}</a>
             {{else}}
               anonymous
             {{/if}}
