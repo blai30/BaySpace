@@ -20,6 +20,7 @@ const aboutRouter = require('./routes/about');
 const usersRouter = require('./routes/users');
 const searchRouter = require('./routes/search');
 const postRouter = require('./routes/post');
+const mapRouter = require('./routes/map');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -65,6 +66,7 @@ app.use('/about', aboutRouter);
 app.use('/users', usersRouter);
 app.use('/search', searchRouter);
 app.use('/post', postRouter);
+app.use('/map', mapRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

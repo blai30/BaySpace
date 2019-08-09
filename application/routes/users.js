@@ -42,7 +42,7 @@ function userProfile(req, res ,next) {
 }
 
 /**
- * This function is used for to get all tickets posted by this user to display on their profile page
+ * This function is used to get all tickets posted by this user to display on their profile page
  * @param req The request sent to the server from the browser
  * @param res The response sent to the browser from the server
  * @param next Finish response
