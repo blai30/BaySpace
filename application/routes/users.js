@@ -37,8 +37,6 @@ function userProfile(req, res ,next) {
     // Preview information on the user in console
     console.log(result[0]);
 
-
-
     next();
   });
 }
@@ -59,6 +57,7 @@ function getUserTickets(req, res, next) {
       'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
+      'location.urlRoute, ' +
       'ticket.id, ' +
       'ticket.status, ' +
       'ticket.description, ' +

@@ -9,7 +9,7 @@ const database = require('../config/database');
 
 const router = express.Router();
 
-const title = 'Search Database';
+const title = 'Search for an Incident';
 
 /**
  * This function is used for the search page to show search results
@@ -29,6 +29,7 @@ function search(req, res, next) {
       'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
+      'location.urlRoute, ' +
       'ticket.id, ' +
       'ticket.status, ' +
       'ticket.description, ' +
@@ -110,6 +111,7 @@ function ticketDetails(req, res, next) {
       'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
+      'location.urlRoute, ' +
       'ticket.id, ' +
       'ticket.status, ' +
       'ticket.description, ' +
