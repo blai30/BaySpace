@@ -1,0 +1,27 @@
+<!-- Front-end for map -->
+<!-- This page displays a map of all locations with issues -->
+<!-- Also display a list of locations and the number of tickets for each location -->
+
+<h1>Map of locations</h1>
+
+<iframe src="https://www.google.com/maps/d/embed?mid=1h-Ll-o8ctceU692zzKUhw6XibVwDJgPc" width="100%" height="1000"></iframe>
+
+<!-- Display a list of locations and the number of tickets for each -->
+<h3>List of locations</h3>
+<table class="table table-sm table-hover h5">
+  <!-- Table headers -->
+  <thead>
+  <th scope="col">Location</th>
+  <th scope="col">Number of tickets</th>
+  </thead>
+
+  <!-- List all locations with a loop -->
+  <tbody>
+  {{#each locations}}
+    <tr>
+      <td style="width: 20%;"><a href="/location/{{this.urlRoute}}" target="_blank">{{this.locationName}}</a></td>
+      <td>{{this.numTickets}}</td>
+    </tr>
+  </tbody>
+  {{/each}}
+</table>

@@ -1,35 +1,19 @@
-<!-- Front-end for location page after clicking on a location from home page -->
-<!-- This page will show all details on this location -->
-<!-- This same file will be used for ALL locations. ONE FILE FOR ALL LOCATIONS -->
+<!-- Front-end for user profile page of a user after clicking on their name from search result under "submitted by user" column -->
 
-<h1>Location information</h1>
+<h1>User profile</h1>
 
 <br>
 
-<h3>Location: {{location.locationName}}</h3>
+<h3>Username: {{user.userName}}</h3>
 
 <br>
 
-<!-- Clickable image takes user to the image in new tab -->
-<a href="
-  {{#if location.imagePath}}
-    http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{location.imagePath}}
-  {{else}}
-    http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
-  {{/if}}" target="_blank">
-
-  <!-- The image itself -->
-  <img src="
-    {{#if location.imagePath}}
-      http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{location.imagePath}}
-  {{else}}
-      http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
-    {{/if}}" alt="Error loading image" class="img-fluid">
-</a>
+<h3>First Name: {{user.firstName}}</h3>
+<h3>Last Name: {{user.lastName}}</h3>
 
 <br>
 
-<h3>List of all issues at this location</h3>
+<h3>List of all tickets submitted by this user</h3>
 
 <!-- Show the table of search results -->
 <div class="table-responsive-md">
@@ -52,7 +36,7 @@
           <a href="
             {{#if this.imagePath}}
               http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{this.imagePath}}
-          {{else}}
+            {{else}}
               http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
             {{/if}}" target="_blank">
             <!-- The image itself -->
@@ -106,7 +90,7 @@
           <!-- Print username of user who submitted ticket, or anonymous -->
           <h5>
             {{#if this.userName}}
-              <a href="/users/profile/{{this.userName}}" target="_blank">{{this.userName}}</a>
+              {{this.userName}}
             {{else}}
               <!-- Tickets with anonymous user should not appear -->
               anonymous

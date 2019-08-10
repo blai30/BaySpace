@@ -66,7 +66,7 @@
                 <!-- Location at which the issue is taking place -->
                 <tr>
                   <th scope="row">Location</th>
-                  <td>{{this.locationName}}</td>
+                  <td><a href="/location/{{this.urlRoute}}" target="_blank">{{this.locationName}}</a></td>
                 </tr>
 
                 <!-- Level of danger rated for this issue -->
@@ -92,7 +92,7 @@
           <!-- Print username of user who submitted ticket, or anonymous -->
           <h5>
             {{#if this.userName}}
-              {{this.userName}}
+              <a href="/users/profile/{{this.userName}}" target="_blank">{{this.userName}}</a>
             {{else}}
               anonymous
             {{/if}}

@@ -6,6 +6,7 @@
 const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
+const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -14,18 +15,17 @@ const session = require('express-session');
 // Initialize the app itself with express
 const app = express();
 
-// Routers
-const indexRouter = require('./routes/index');
-const aboutRouter = require('./routes/about');
-const usersRouter = require('./routes/users');
-const searchRouter = require('./routes/search');
-const postRouter = require('./routes/post');
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+hbs.registerHelper('if_eq', (a, b, options) => {
+  if (a === b) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 
 // Flash requires an express session to work
 app.use(session({
@@ -59,12 +59,8 @@ app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery')))
 app.use('/popper', express.static(path.join(__dirname, '/node_modules/popper')));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap')));
 
-// Connect routes
-app.use('/', indexRouter);
-app.use('/about', aboutRouter);
-app.use('/users', usersRouter);
-app.use('/search', searchRouter);
-app.use('/post', postRouter);
+// Connect routes to the site, this must be after initializing flash and global variables
+require('./models/router')(app);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
