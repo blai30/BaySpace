@@ -41,6 +41,13 @@
           <a href="#" class="list-group-item list-group-item-action bg-light">Park Events</a>
           <a href="/map" class="list-group-item list-group-item-action bg-light">Map</a>
           <a href="/about" class="list-group-item list-group-item-action bg-light">About</a>
+
+          <!-- Administration -->
+          {{#if user}}
+            {{#if_eq user.rank 3}}
+              <a href="/tickets" class="list-group-item list-group-item-action bg-light">Tickets <strong class="text-danger">(admin)</strong></a>
+            {{/if_eq}}
+          {{/if}}
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -132,7 +139,9 @@
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <!-- If user is signed in -->
               {{#if user}}
-                <h5 class="align-self-center">Welcome, {{user.firstName}}!</h5>
+                <h5 class="align-self-center">
+                  Welcome, <a href="/users/profile/{{user.userName}}">{{user.firstName}}</a>!
+                </h5>
                 <li class="nav-item">
                   <a class="nav-link" href="/post">Post</a>
                 </li>
