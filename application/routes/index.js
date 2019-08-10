@@ -10,6 +10,12 @@ const router = express.Router();
 
 const title = 'BaySpace | CSC 648 Team 05';
 
+/**
+ * This function is used for location details pages when clicking on a location
+ * @param req The request sent to the server from the browser
+ * @param res The response sent to the browser from the server
+ * @param next Finish response
+ */
 function locationDetails(req, res, next) {
   // Store the route to this location in a variable
   let urlRoute = req.params.urlRoute;
@@ -34,6 +40,12 @@ function locationDetails(req, res, next) {
   });
 }
 
+/**
+ * This function is used to display all tickets that are in this location
+ * @param req The request sent to the server from the browser
+ * @param res The response sent to the browser from the server
+ * @param next Finish response
+ */
 function getLocationTickets(req, res, next) {
   // Get this location
   let urlRoute = req.params.urlRoute;
@@ -109,6 +121,7 @@ router.get('/', (req, res, next) => {
   });
 });
 
+// Routes each dedicated location page to their own url (ie. /location/alcatrazIsland)
 router.get('/location/:urlRoute', [
   locationDetails,
   getLocationTickets
