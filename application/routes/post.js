@@ -14,8 +14,18 @@ const router = express.Router();
 
 const title = 'Post ticket';
 
+// Check if user is signed in, otherwise redirect them to sign in form
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    req.flash('error_msg', 'You must be signed in to post a ticket');
+    res.redirect('/users/signin');
+  }
+}
+
 // Routes tickets.hbs page to /tickets
-router.get('/', (req, res, next) => {
+router.get('/', ensureAuthenticated, (req, res, next) => {
   res.render('post', {
     title: title
   });
@@ -23,9 +33,10 @@ router.get('/', (req, res, next) => {
 
 // This is for adding items to database
 router.post('/', [
+  ensureAuthenticated,
   upload,
   recaptcha
-] , (req, res, next) => {
+], (req, res, next) => {
   /*
     UPLOADING IMAGE TO SERVER AND ADDING IMAGE TO DATABASE
    */
@@ -79,6 +90,7 @@ router.post('/', [
 
         console.log(result);
         req.flash('success_msg', 'Ticket has been posted successfully.');
+        res.redirect('/post');
       });
 
       console.log(query.sql);
@@ -93,6 +105,7 @@ router.post('/', [
       location_id: req.body.location_id,
       description: (!req.body.description) ? 'no details' : req.body.description,
       rating: (!req.body.rating) ? '1' : req.body.rating,
+      user_id: (!req.body.anonymous) ? req.user.id : null,
       image_id: 0   // Image id is 0 by default if no image was uploaded
     };
 
