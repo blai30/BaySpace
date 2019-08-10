@@ -4,6 +4,8 @@
  */
 
 const express = require('express');
+const path = require('path');
+const fs = require('fs');
 
 const database = require('../config/database');
 
@@ -131,18 +133,65 @@ function updateTicket(req, res, next) {
  * @param next Finish response
  */
 function deleteTicket(req, res, next) {
-  // Query to delete ticket by id
-  let sqlQuery = `DELETE FROM ticket WHERE id = '${req.params.id}'`;
+  // Query the ticket by id and delete it
+  let sqlQuery = `SELECT * FROM ticket WHERE id = '${req.params.id}'`;
 
-  // Ticket gets deleted
-  database.query(sqlQuery, (err, result) => {
+  // Fetched ticket by id
+  database.query(sqlQuery, (err, resultTicket) => {
     if (err) {
       console.log(err);
       next();
     }
 
-    // Log the result of ticket getting deleted to console
-    console.log(result);
+    // Check if the ticket has an uploaded image attached to it and attempt to delete it
+    if (resultTicket[0].image_id > 0) {
+      // Query the image by id to get the image path and delete it along with the image row itself
+      let sqlQuery = `SELECT * FROM image WHERE id = '${resultTicket[0].image_id}'`;
+      database.query(sqlQuery, (err, resultImage) => {
+        if (err) {
+          console.log(err);
+          next();
+        }
+
+        // Get the path to the uploaded image of the ticket
+        let imagePath = path.join(__dirname, `../public/${resultImage[0].imagePath}`);
+        console.log(imagePath);
+
+        // Delete the image from the file system (WILL ONLY WORK ON SERVER AS THE IMAGES ARE UPLOADED THERE)
+        try {
+          fs.unlinkSync(imagePath);
+          //file removed
+        } catch (err) {
+          console.error(err);
+        }
+
+        // Delete the image row from image table
+        let sqlQuery = `DELETE FROM image WHERE id = '${resultImage[0].id}'`;
+        database.query(sqlQuery, (err, result) => {
+          if (err) {
+            console.log(err);
+            next();
+          }
+
+          // Log the result of image getting deleted to console
+          console.log(result);
+          next();
+        });
+      });
+    }
+
+    // Finally delete the ticket from the ticket table
+    let sqlQuery = `DELETE FROM ticket WHERE id = '${req.params.id}'`;
+    database.query(sqlQuery, (err, result) => {
+      if (err) {
+        console.log(err);
+        next();
+      }
+
+      // Log the result of image getting deleted to console
+      console.log(result);
+      next();
+    });
 
     next();
   });

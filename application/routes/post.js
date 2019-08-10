@@ -90,6 +90,7 @@ router.post('/', [
 
         console.log(result);
         req.flash('success_msg', 'Ticket has been posted successfully.');
+        res.redirect('/post');
       });
 
       console.log(query.sql);
