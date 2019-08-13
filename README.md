@@ -4,13 +4,67 @@ http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/
 
 http://54.215.173.150/
 
-## Please when ready add your teams application URL or IP to the repository description. This will help with grading. Teams are expected to keep this value up to date.
+# BaySpace
 
-## Please do the following steps before completing Milestone 0.
-1. Change the name of the repository from csc648-su19-TeamNN. All that needs to change is the NN to your respective team number. Team numbers whose value is less than 10, please pad with a 0. Ex team 1 is Team01 team 11 is Team11. Please make sure to also remove the username from the repository as well. Teams with incorrectly name repository will have points deducted from their milestone 0 grades.
+csc648-su19-Team05
+A CS 648 Project by Team 5
 
-1. PLEASE REMOVE THE USERNAME FROM THE REPOSITORY NAME!!!
+## Getting Started
 
-2. Add ALL members of your team to this repository. For it to count, they must ACCEPT the invite.
 
-## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
+Check Credentials Folder
+
+## Built With
+
+
+* Server Host:
+  Amazon Web Services (AWS) EC2
+  
+* Operating System:
+  Ubuntu 18.04.2 LTS Server
+  
+* Database:
+  MySQL Database
+  
+* Front End:
+  Bootstrap 4.3.1 (HTML, CSS, JavaScript)
+  
+* Back End:
+JavaScript + NodeJS 12.5.0 + Express
+
+* APIs:
+Google Maps API
+
+* Supported Browsers:
+Mozilla Firefox, Google Chrome, Safari
+
+* IDEs:
+Visual Studio Code, IntelliJ, WebStorm
+
+
+# Authors
+
+* **Team Lead** *Jonathan Kaldani*
+
+*Github Master: *Brian Lai**
+
+Front End Team:
+- *Anya Livshyts*
+- *Tianchen Liu*
+- *Habtom Asfaha*
+
+
+Back End Team:
+-  *Anwar Halteh (Back End Team Lead)*
+- *Justin Zhu*
+- *Sandeep Dhakal*
+
+
+## License
+
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
