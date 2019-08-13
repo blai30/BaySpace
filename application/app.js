@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const got = require('got');
 
 // Initialize the app itself with express
 const app = express();
@@ -61,6 +62,37 @@ app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstr
 
 // Connect routes to the site, this must be after initializing flash and global variables
 require('./models/router')(app);
+
+// Google analytics
+app.enable('trust proxy');
+// The following environment variable is set by app.yaml when running on App
+// Engine, but will need to be set manually when running locally. See README.md.
+const {GA_TRACKING_ID} = process.env;
+
+const trackEvent = (category, action, label, value) => {
+  const data = {
+    // API Version.
+    v: '1',
+    // Tracking ID / Property ID.
+    tid: GA_TRACKING_ID,
+    // Anonymous Client Identifier. Ideally, this should be a UUID that
+    // is associated with particular user, device, or browser instance.
+    cid: '555',
+    // Event hit type.
+    t: 'event',
+    // Event category.
+    ec: category,
+    // Event action.
+    ea: action,
+    // Event label.
+    el: label,
+    // Event value.
+    ev: value,
+  };
+
+  return got.post('http://www.google-analytics.com/collect', data);
+};
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
