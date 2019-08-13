@@ -67,7 +67,7 @@ require('./models/router')(app);
 app.enable('trust proxy');
 // The following environment variable is set by app.yaml when running on App
 // Engine, but will need to be set manually when running locally. See README.md.
-const {GA_TRACKING_ID} = process.env;
+const {GA_TRACKING_ID} = process.env || 'UA-145705080-1';
 
 const trackEvent = (category, action, label, value) => {
   const data = {

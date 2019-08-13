@@ -19,6 +19,7 @@
     "express": "latest",
     "express-session": "^1.16.2",
     "express-validator": "^6.1.1",
+    "got": "latest",
     "hbs": "^4.0.4",
     "http-errors": "^1.7.3",
     "jquery": "^3.4.1",
