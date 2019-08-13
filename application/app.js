@@ -79,3 +79,38 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+// THIS GOES AT THE TOP UNDER ALL THE require LINES
+const got = require('got');
+
+
+// THE REST GOES SOMEWHERE AFTER app = express();
+app.enable('trust proxy');
+
+// The following environment variable is set by app.yaml when running on App
+// Engine, but will need to be set manually when running locally. See README.md.
+const {GA_TRACKING_ID} = process.env;
+
+const trackEvent = (category, action, label, value) => {
+  const data = {
+    // API Version.
+    v: '1',
+    // Tracking ID / Property ID.
+    tid: GA_TRACKING_ID,
+    // Anonymous Client Identifier. Ideally, this should be a UUID that
+    // is associated with particular user, device, or browser instance.
+    cid: '555',
+    // Event hit type.
+    t: 'event',
+    // Event category.
+    ec: category,
+    // Event action.
+    ea: action,
+    // Event label.
+    el: label,
+    // Event value.
+    ev: value,
+  };
+
+  return got.post('http://www.google-analytics.com/collect', data);
+};
