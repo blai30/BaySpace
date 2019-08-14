@@ -1,0 +1,110 @@
+<!-- Front-end for user profile page of a user after clicking on their name from search result under "submitted by user" column -->
+
+<h1>User profile</h1>
+
+<br>
+
+<h3>Username: {{user.userName}}</h3>
+
+<br>
+
+<h3>First Name: {{user.firstName}}</h3>
+<h3>Last Name: {{user.lastName}}</h3>
+
+<br>
+
+<h3>List of all tickets submitted by this user</h3>
+
+<!-- Show the table of search results -->
+<div class="table-responsive-md">
+  <table class="table table-sm table-hover">
+    <!-- Table categories -->
+    <thead>
+    <th scope="col">Image</th>
+    <th scope="col">Details</th>
+    <th scope="col">Submitted by</th>
+    <th scope="col">Status</th>
+    </thead>
+
+    <!-- Table body -->
+    <tbody>
+    {{#each tickets}}
+      <tr>
+        <!-- Image -->
+        <td style="width: 16.5%;">
+          <!-- Clickable image takes user to the image in new tab -->
+          <a href="
+            {{#if this.imagePath}}
+              http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{this.imagePath}}
+            {{else}}
+              http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
+            {{/if}}" target="_blank">
+            <!-- The image itself -->
+            <img src="
+            {{#if this.imagePath}}
+              http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/{{this.imagePath}}
+            {{else}}
+              http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/uploads/noimage.png
+            {{/if}}" alt="Error loading image" class="img-fluid">
+          </a>
+        </td>
+
+        <!-- Details -->
+        <td style="width: 50%;">
+          <div class="table-responsive-md">
+            <!-- General information about the ticket -->
+            <table class="table table-sm table-hover table-borderless">
+              <tbody>
+              <!-- The type of issue -->
+              <tr>
+                <th scope="row" style="width: 20%;">Issue</th>
+                <th>{{this.issueName}}</th>
+              </tr>
+
+              <!-- Location at which the issue is taking place -->
+              <tr>
+                <th scope="row">Location</th>
+                <td>{{this.locationName}}</td>
+              </tr>
+
+              <!-- Level of danger rated for this issue -->
+              <tr>
+                <th scope="row">Rating</th>
+                <td>{{this.rating}}</td>
+              </tr>
+
+              <!-- Description of the ticket -->
+              <tr>
+                <th scope="row">Description</th>
+                <td>{{this.description}}</td>
+              </tr>
+              </tbody>
+            </table>
+            <!-- Link to details page of the ticket -->
+            <a href="/search/details/{{this.id}}" target="_blank"><h5>More Details</h5></a>
+          </div>
+        </td>
+
+        <!-- Submitted by -->
+        <td style="width: 20%;">
+          <!-- Print username of user who submitted ticket, or anonymous -->
+          <h5>
+            {{#if this.userName}}
+              {{this.userName}}
+            {{else}}
+              <!-- Tickets with anonymous user should not appear -->
+              anonymous
+            {{/if}}
+          </h5>
+          <h5>{{this.time}}</h5>
+        </td>
+
+        <!-- Status -->
+        <td style="width: 13.5%;">
+          <h5>{{this.status}}</h5>
+        </td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>

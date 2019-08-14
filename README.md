@@ -11,11 +11,9 @@ A CS 648 Project by Team 5
 
 ## Getting Started
 
-
 Check Credentials Folder
 
 ## Built With
-
 
 * Server Host:
   Amazon Web Services (AWS) EC2
@@ -44,9 +42,9 @@ Visual Studio Code, IntelliJ, WebStorm
 
 # Authors
 
-* **Team Lead** *Jonathan Kaldani*
+* **Team Lead:** *Jonathan Kaldani*
 
-*Github Master: *Brian Lai**
+* Github Master: *Brian Lai*
 
 Front End Team:
 - *Anya Livshyts*
@@ -55,13 +53,13 @@ Front End Team:
 
 
 Back End Team:
--  *Anwar Halteh (Back End Team Lead)*
+- *Anwar Halteh (Back End Team Lead)*
 - *Justin Zhu*
 - *Sandeep Dhakal*
 
 
 ## License
-
+Educational
 
 ## Acknowledgments
 

@@ -9,6 +9,18 @@
 <html>
 
 <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145705080-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-145705080-1');
+</script>
+
+
   <!-- Title of web page passed in from corresponding .js route file -->
   <title>{{title}}</title>
 
@@ -36,11 +48,16 @@
         <div class="sidebar-heading">Menu</div>
         <div class="list-group list-group-flush">
           <a href="/" class="list-group-item list-group-item-action bg-light">Home</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Recent Posts</a>
           <a href="/" class="list-group-item list-group-item-action bg-light">Park List</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Park Events</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Map</a>
+          <a href="/map" class="list-group-item list-group-item-action bg-light">Map</a>
           <a href="/about" class="list-group-item list-group-item-action bg-light">About</a>
+
+          <!-- Administration -->
+          {{#if user}}
+            {{#if_eq user.rank 3}}
+              <a href="/tickets" class="list-group-item list-group-item-action bg-light">Tickets <strong class="text-danger">(admin)</strong></a>
+            {{/if_eq}}
+          {{/if}}
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -50,7 +67,7 @@
 
         <!-- Fine text to indicate that this app is for educational purposes and not commercial -->
         <div class="alert alert-info mb-0" role="alert">
-          Software Engineering class SFSU Summer 2019 | Team 05
+          SFSU Software Engineering Project CSC 648-848, Summer 2019. For Demonstration Only
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -130,13 +147,14 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="/post">Post</a>
-              </li>
-
               <!-- If user is signed in -->
               {{#if user}}
-                <h4>Welcome, {{user}}!</h4>
+                <h5 class="align-self-center">
+                  Welcome, <a href="/users/profile/{{user.userName}}">{{user.firstName}}</a>!
+                </h5>
+                <li class="nav-item">
+                  <a class="nav-link" href="/post">Post</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/users/signout">Sign out</a>
                 </li>
@@ -189,7 +207,7 @@
   <!-- BOOTSTRAP JS FILES -->
   <script src="/jquery/dist/jquery.min.js"></script>
   <script src="/popper/dist/popper.min.js"></script>
-  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- reCAPTCHA validation -->
   <script>

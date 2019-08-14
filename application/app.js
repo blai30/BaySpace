@@ -6,29 +6,27 @@
 const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
+const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const got = require('got');
 
 // Initialize the app itself with express
 const app = express();
-
-// Routers
-const indexRouter = require('./routes/index');
-const aboutRouter = require('./routes/about');
-const usersRouter = require('./routes/users');
-const searchRouter = require('./routes/search');
-const postRouter = require('./routes/post');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Initialize passport, used for login and registration
-app.use(passport.initialize());
+hbs.registerHelper('if_eq', (a, b, options) => {
+  if (a === b) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 
 // Flash requires an express session to work
 app.use(session({
@@ -36,6 +34,11 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }));
+
+// Initialize passport, used for login and registration
+require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Initialize flash to view global messages
 app.use(flash());
@@ -57,12 +60,39 @@ app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery')))
 app.use('/popper', express.static(path.join(__dirname, '/node_modules/popper')));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap')));
 
-// Connect routes
-app.use('/', indexRouter);
-app.use('/about', aboutRouter);
-app.use('/users', usersRouter);
-app.use('/search', searchRouter);
-app.use('/post', postRouter);
+// Connect routes to the site, this must be after initializing flash and global variables
+require('./models/router')(app);
+
+// Google analytics
+app.enable('trust proxy');
+// The following environment variable is set by app.yaml when running on App
+// Engine, but will need to be set manually when running locally. See README.md.
+const {GA_TRACKING_ID} = process.env || 'UA-145705080-1';
+
+const trackEvent = (category, action, label, value) => {
+  const data = {
+    // API Version.
+    v: '1',
+    // Tracking ID / Property ID.
+    tid: GA_TRACKING_ID,
+    // Anonymous Client Identifier. Ideally, this should be a UUID that
+    // is associated with particular user, device, or browser instance.
+    cid: '555',
+    // Event hit type.
+    t: 'event',
+    // Event category.
+    ec: category,
+    // Event action.
+    ea: action,
+    // Event label.
+    el: label,
+    // Event value.
+    ev: value,
+  };
+
+  return got.post('http://www.google-analytics.com/collect', data);
+};
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

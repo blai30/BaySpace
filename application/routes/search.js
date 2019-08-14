@@ -9,6 +9,8 @@ const database = require('../config/database');
 
 const router = express.Router();
 
+const title = 'Search for an Incident';
+
 /**
  * This function is used for the search page to show search results
  * @param req The request sent to the server from the browser
@@ -27,6 +29,7 @@ function search(req, res, next) {
       'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
+      'location.urlRoute, ' +
       'ticket.id, ' +
       'ticket.status, ' +
       'ticket.description, ' +
@@ -41,12 +44,11 @@ function search(req, res, next) {
       'LEFT JOIN location ' +
         'ON (ticket.location_id = location.id) ' +
       'LEFT JOIN user ' +
-        'ON (ticket.user_id = user.id) ' +
-    'ORDER BY ticket.time DESC';
+        'ON (ticket.user_id = user.id) ';
 
   // If a search term is entered, add additional filters based on user input from front end
   if (searchTerm !== '') {
-    sqlQuery += 'WHERE (issue.issueName LIKE ' + `'%${searchTerm}%' OR location.locationName LIKE ` + `'%${searchTerm}%' OR ticket.description LIKE ` + `'%${searchTerm}') `;
+    sqlQuery += 'WHERE (issue.issueName LIKE ' + `'%${searchTerm}%' OR location.locationName LIKE ` + `'%${searchTerm}%' OR ticket.description LIKE ` + `'%${searchTerm}%') `;
 
     if (issuesCategory !== '') {
       sqlQuery += `AND (issue.issueName = '${issuesCategory}') `;
@@ -69,6 +71,9 @@ function search(req, res, next) {
     }
   }
 
+  // Sort by time in descending order, this must be at the end of the query
+  sqlQuery += 'ORDER BY ticket.time DESC';
+
   // Preview query in console
   console.log(sqlQuery);
 
@@ -77,6 +82,7 @@ function search(req, res, next) {
     if (err) {
       req.searchResult = '';
       req.searchTerm = '';
+      console.log(err);
       next();
     }
 
@@ -105,6 +111,7 @@ function ticketDetails(req, res, next) {
       'image.imagePath, ' +
       'issue.issueName, ' +
       'location.locationName, ' +
+      'location.urlRoute, ' +
       'ticket.id, ' +
       'ticket.status, ' +
       'ticket.description, ' +
@@ -147,7 +154,7 @@ function ticketDetails(req, res, next) {
 // Routes search.hbs page to /search
 router.get('/', (req, res, next) => {
   res.render('search', {
-    title: 'Search Database'
+    title: title
   });
 });
 
@@ -168,21 +175,25 @@ router.post('/', [
       max: 50
     }),
 
-  // The search function that was defined in this file
-  search
-], (req, res, next) => {
+  // Validate search field to contain only alphanumeric characters
+  check('searchTerm', 'Search term must contain only alphanumeric characters.')
+    .optional({
+      checkFalsy: true
+    })
+    .matches(/^[a-z0-9 ]+$/i),  //vs [\w\-\s]
+], search, (req, res, next) => {  // The search function that was defined above is passed as a handler
   let searchResult = req.searchResult;
 
-  // Pass any validation errors to front-end, in this case search term <=50 characters
+  // Pass any validation errors to front-end, in this case search term <=50 alphanumeric characters
   let errors = validationResult(req);
 
   // The values are passed to search.hbs
   res.render('search', {
-    title: 'Search Database',
-    searchTerm: req.body.searchTerm,  // Persist search query
-    numResults: searchResult.length,
-    results: searchResult,            // Pass results to front end
-    msg: (searchResult.length <= 0) ? 'No results found.' : '',   // Display message when no results
+    title: title,
+    searchTerm: req.body.searchTerm,      // Persist search query
+    numResults: (errors.isEmpty()) ? searchResult.length : 0,
+    results: (errors.isEmpty()) ? searchResult : null,     // Pass results to front end
+    msg: (searchResult.length <= 0 && errors.isEmpty()) ? 'No results found.' : '',   // Display message when no results
 
     errors: errors.array()  // Validation errors will be shown if there are any
   });
