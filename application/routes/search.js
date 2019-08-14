@@ -180,7 +180,7 @@ router.post('/', [
     .optional({
       checkFalsy: true
     })
-    .isAlphanumeric(),
+    .matches(/^[a-z0-9 ]+$/i),  //vs [\w\-\s]
 ], search, (req, res, next) => {  // The search function that was defined above is passed as a handler
   let searchResult = req.searchResult;
 
@@ -198,5 +198,3 @@ router.post('/', [
     errors: errors.array()  // Validation errors will be shown if there are any
   });
 });
-
-module.exports = router;
