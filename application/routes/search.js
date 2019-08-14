@@ -178,7 +178,7 @@ router.post('/', [
   // Validate search field to contain only alphanumeric characters
   check('searchTerm', 'Search term must contain only alphanumeric characters.')
     .optional()
-    .matches(/^[\w\-\s]+$/i),  //vs [a-z0-9_]
+    .matches(/^[a-z0-9_.]+$/i),  //vs [\w\-\s]
 ], search, (req, res, next) => {  // The search function that was defined above is passed as a handler
   let searchResult = req.searchResult;
 
