@@ -78,6 +78,7 @@ router.post('/', [
         location_id: req.body.location_id,
         description: (!req.body.description) ? 'no details' : req.body.description,
         rating: (!req.body.rating) ? '1' : req.body.rating,
+        user_id: (!req.body.anonymous) ? req.user.id : null,
         image_id: result.insertId   // Image id is the id of the new uploaded image
       };
 
