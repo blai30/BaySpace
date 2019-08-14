@@ -198,3 +198,5 @@ router.post('/', [
     errors: errors.array()  // Validation errors will be shown if there are any
   });
 });
+
+module.exports = router;
