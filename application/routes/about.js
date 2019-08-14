@@ -7,10 +7,12 @@ const express = require('express');
 
 const router = express.Router();
 
+const title = 'About Team 05';
+
 // Routes about.hbs page to /about
 router.get('/', (req, res, next) => {
   res.render('about', {
-    title: 'About Team 05'
+    title: title
   });
 });
 
