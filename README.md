@@ -11,7 +11,15 @@ A CS 648 Project by Team 5
 
 ## Getting Started
 
-Check Credentials Folder
+### Serving project on localhost
+```
+cd application/
+npm install
+npm run dev
+```
+
+### Managing server
+* Check Credentials Folder
 
 ## Built With
 
