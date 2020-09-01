@@ -16,13 +16,13 @@ const fs = require('fs');
 // This will only run when 'npm run dev' is used; This should be used when testing on local machine in development, DO NOT USE THIS WHEN RUNNING ON THE AWS SERVER
 if (process.env.NODE_ENV === 'dev') {
   // Private SSH key file that is located in /csc648-su19-Team05/credentials/csc648.pem
-  const privateKeyPath = path.join(__dirname, '../../credentials/csc648Summer.pem');
+  const privateKeyPath = path.join(__dirname, '../../credentials/google_cloud');
   const privateKeyFile = fs.readFileSync(privateKeyPath);
 
   const sshTunnelConfig = {
-    username: 'ubuntu',           // User in remote AWS server; no password
+    username: 'brian',            // User in remote AWS server; no password
     privateKey: privateKeyFile,   // Private SSH key used to SSH to remote server
-    host: process.env.SSH_HOST,   // Defined in .env file to be 54.215.173.150
+    host: process.env.SSH_HOST,   // Defined in .env file to be 35.209.5.63
     port: 22,                     // This is the SSH connection port
     dstHost: '127.0.0.1',         // MySQL database host for remote AWS server (should be localhost)
     dstPort: 3306,                // This is the port of the MySQL database on remote server
