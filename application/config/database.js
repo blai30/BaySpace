@@ -49,7 +49,7 @@ const database = mysql.createConnection({
   // !!! IMPORTANT !!!
   // RUN 'npm run dev' TO TEST ON LOCAL DEVELOPMENT MACHINE
   host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'brian',
+  user: process.env.DB_USER || 'root',
   password: process.env.DB_PASS || 'admin',
   port: process.env.DB_PORT,  // DB PORT WILL BE 33306 WHEN USING 'npm run dev', OR 3306 BY DEFAULT WHEN RUNNING ON SERVER
 
