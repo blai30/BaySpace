@@ -1,8 +1,8 @@
 # csc648-su19-Team05
 
-http://ec2-54-215-173-150.us-west-1.compute.amazonaws.com/
+# IMPORTANT
 
-http://54.215.173.150/
+This project is no longer being hosted. The original AWS instance that this app was running on has been deleted permanently. We no longer have the database tables to run this app anymore. The source code remains in this repository as a reference.
 
 # BaySpace
 
